@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
-    "start": ".\\node_modules\\.bin\\live-server src"
+    "start": "./node_modules/.bin/live-server src"
   },
   "repository": "https://github.com/Hungary4Success/microsmash.git",
   "author": "Hungary4Success",
