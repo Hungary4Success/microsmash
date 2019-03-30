@@ -3,12 +3,24 @@
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
-    "start": ".\\node_modules\\.bin\\live-server src"
+    "start": "./node_modules/.bin/live-server src",
+    "build": "./node_modules/.bin/webpack --config webpack.config.js"
   },
   "repository": "https://github.com/Hungary4Success/microsmash.git",
   "author": "Hungary4Success",
   "license": "MIT",
-  "dependencies": {
-    "live-server": "^1.2.1"
+  "dependencies": {},
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.2",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "html-webpack-inline-source-plugin": "^0.0.10",
+    "html-webpack-plugin": "^3.2.0",
+    "live-server": "^1.2.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }
