@@ -14,7 +14,7 @@ export class GameObject {
     animation.visible = true;
 
     if (!loop) {
-      animation.onComplete = function () {
+      animation.onComplete = () => {
         animation.visible = false;
         animation.gotoAndStop(0);
 
@@ -66,6 +66,10 @@ export class GameObject {
     this.animations[name].scale.x = this.animations[name].scale.y = value;
   }
 
+  getWidth() {
+    return this.currentAnimation.width;
+  }
+
   addAnimation(name) {
     if (PIXI.loader.resources[name]) {
       this.animations[name] = new PIXI.extras.AnimatedSprite(
@@ -73,6 +77,7 @@ export class GameObject {
       );
       this.animations[name].anchor.y = 1;
       this.animations[name].anchor.x = 0.5;
+      this.currentAnimation = this.animations[name];
     }
     else {
       console.error("GameObject: Cannot add animation that was not preloaded.");

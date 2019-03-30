@@ -1,4 +1,7 @@
+import "./external/dap.bundle.js";
 import "./external/pixi.min.js";
+import "./input.js";
+import "./connect.js";
 import { GameObject } from "./game-engine.js";
 import { registerHandler, UserAction } from "./input.js";
 
@@ -11,16 +14,16 @@ const app = new PIXI.Application({
 document.querySelector("#GameView").appendChild(app.view);
 app.ticker.add(delta => mainLoop(delta));
 
-const deadAnimation = "animation/spritesheet.json";
-const allAnimations = [deadAnimation];
+const idleAnim = "animation/tejasidle.json";
+const allAnimations = [idleAnim];
 PIXI.loader.add(allAnimations).load(appStart);
 
 function appStart() {
   window.aThing = new GameObject(app.stage);
-  aThing.addAnimation(deadAnimation)
-  aThing.setPosition(0, 522);
-  aThing.setScale(deadAnimation, 0.2);
-  aThing.playAnimation(deadAnimation, true);
+  aThing.addAnimation(idleAnim)
+  aThing.setPosition(aThing.getWidth() / 2, 512);
+  aThing.setScale(idleAnim, 1);
+  aThing.playAnimation(idleAnim, true);
 
   registerHandler(UserAction.RIGHT, function() {
     console.log("RIGHT");
