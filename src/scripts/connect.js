@@ -2,10 +2,6 @@ document.getElementById("connectBtn").onclick = doSerial;
 
 const { DAPLink } = DAPjs;
 
-// window.daplink.on(DAPLink.EVENT_SERIAL_DATA, (data) => {
-//   console.log(data);
-// });
-
 function doSerial() {
   navigator.usb.requestDevice({
     filters: [{ vendorId: 0xD28 }]
@@ -28,8 +24,6 @@ function doSerial() {
       .then((baud) => {
         window.daplink.startSerialRead(50);
         console.log("Listening at ${baud} baud...");
-
-        lib.init(setupHterm);
       })
       .catch((e) => {
         // If micro:bit does not support dapjs
@@ -45,5 +39,9 @@ function doSerial() {
 
         $("#flashing-overlay-error").html(`<div>${e}</div><div>Please restart your micro:bit and try again</div><a href="#" onclick="flashErrorClose()">Close</a>`);
       });
+
+    window.daplink.on(DAPLink.EVENT_SERIAL_DATA, (data) => {
+        console.log(data);
+    });
   });
 }
