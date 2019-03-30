@@ -6,7 +6,7 @@ import { GameObject } from "./game-engine.js";
 import { registerHandler, UserAction } from "./input.js";
 
 let playerOneHealth = 70;
-let playerTwoHealth = 60;
+let playerTwoHealth = 100;
 
 const app = new PIXI.Application({
   width: 512,
@@ -93,7 +93,7 @@ function drawRightHealthBar() {
   //Create the front green rectangle
   let outerBar = new PIXI.Graphics();
   outerBar.beginFill(0x33FF00);
-  outerBar.drawRect((100 - playerTwoHealth) * 2, 0, 200, 12);
+  outerBar.drawRect((100 - playerTwoHealth) * 2, 0, 200 - (100 - playerTwoHealth) * 2, 12);
   outerBar.endFill();
   healthBar.addChild(outerBar);
 
