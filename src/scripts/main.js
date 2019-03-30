@@ -14,14 +14,16 @@ const app = new PIXI.Application({
 document.querySelector("#GameView").appendChild(app.view);
 
 const idleAnim = "animation/tejasidle.json";
-const allAnimations = [idleAnim];
+const attackAnim = "animation/tejasattack.json";
+const allAnimations = [idleAnim, attackAnim];
 PIXI.loader.add(allAnimations).load(appStart);
 
 function appStart() {
   window.aThing = new GameObject(app.stage);
-  aThing.addAnimation(idleAnim)
+  aThing.addAnimation(attackAnim);
+  aThing.addAnimation(idleAnim);
+  aThing.setScale(0.5);
   aThing.setPosition(aThing.getWidth() / 2, 512);
-  aThing.setScale(idleAnim, 1);
   aThing.playAnimation(idleAnim, true);
 
   registerHandler(UserAction.RIGHT, function() {
@@ -36,6 +38,9 @@ function appStart() {
 
   registerHandler(UserAction.ATTACK, function() {
     console.log("ATTACK");
+    aThing.playAnimation(attackAnim, false, function() {
+      aThing.playAnimation(idleAnim, true);
+    });
   });
 
   registerHandler(UserAction.DEFENSE, function() {
