@@ -2,7 +2,7 @@
   "name": "microsmash",
   "version": "0.1.0",
   "scripts": {
-    "start": "./node_modules/.bin/live-server --mount=/:src",
+    "start": "./node_modules/.bin/live-server --mount=/:src --mount=animation:animation",
     "build": "./node_modules/.bin/webpack --config webpack.config.js"
   },
   "repository": "https://github.com/Hungary4Success/microsmash.git",
@@ -13,7 +13,6 @@
     "filemanager-webpack-plugin": "^2.0.5",
     "html-webpack-inline-source-plugin": "^0.0.10",
     "html-webpack-plugin": "^3.2.0",
-    "pixi.js": "^4.8.7",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },
