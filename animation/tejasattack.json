@@ -1,0 +1,95 @@
+{"frames": {
+
+"tejasattack_01.png":
+{
+	"frame": {"x":0,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241}
+},
+"tejasattack_02.png":
+{
+	"frame": {"x":200,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241}
+},
+"tejasattack_03.png":
+{
+	"frame": {"x":400,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241}
+},
+"tejasattack_04.png":
+{
+	"frame": {"x":600,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241}
+},
+"tejasattack_05.png":
+{
+	"frame": {"x":800,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241}
+},
+"tejasattack_06.png":
+{
+	"frame": {"x":1000,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241}
+},
+"tejasattack_07.png":
+{
+	"frame": {"x":1200,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241}
+},
+"tejasattack_08.png":
+{
+	"frame": {"x":1400,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241}
+},
+"tejasattack_09.png":
+{
+	"frame": {"x":1600,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241}
+},
+"tejasattack_10.png":
+{
+	"frame": {"x":1800,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241}
+}},
+"animations": {
+	"tejasattack": ["tejasattack_01.png","tejasattack_02.png","tejasattack_03.png","tejasattack_04.png","tejasattack_05.png","tejasattack_06.png","tejasattack_07.png","tejasattack_08.png","tejasattack_09.png","tejasattack_10.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "tejasattack.png",
+	"format": "RGBA8888",
+	"size": {"w":2000,"h":241},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:4696064b66c26392dbc4c646a722dd63:edf14bc2727c491e6d18ea921a6b2239:d38bea4cc830a0d259bdde7bed4ab1e8$"
+}
+}
