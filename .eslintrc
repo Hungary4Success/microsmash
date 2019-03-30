@@ -10,9 +10,13 @@
         "no-console": 0,
         "no-plusplus": 0,
         "no-use-before-define": 0,
-        "strict": ["error", "global"]
+        "strict": ["error", "global"],
+        "quotes": ["error", "double"]
     },
     "env": {
         "browser": true
+    },
+    "globals": {
+        "PIXI": "readonly"
     }
 }

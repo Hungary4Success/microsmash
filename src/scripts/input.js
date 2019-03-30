@@ -1,1 +1,1 @@
-document.addEventListener('keydown', console.log('sajt'));
+window.addEventListener("keydown", () => console.log("sajt"));
