@@ -10,8 +10,13 @@ const app = new PIXI.Application({
 
 document.querySelector("#GameView").appendChild(app.view);
 
-window.aThing = new GameObject(app.stage, "animation/spritesheet.json", ((thingy) => {
-  thingy.setPosition(0, 0);
-  thingy.setScale(0.2);
-  thingy.display();
-}));
+window.deadAnimation = "animation/spritesheet.json";
+window.aThing = new GameObject(app.stage);
+aThing.addAnimation(deadAnimation, () => {
+  aThing.setPosition(deadAnimation ,0, 0);
+  aThing.setScale(deadAnimation, 0.2);
+});
+
+document.body.addEventListener("click", function () {
+  window.aThing.playAnimation(deadAnimation, false);
+});
