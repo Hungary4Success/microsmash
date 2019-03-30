@@ -2,7 +2,7 @@
   "name": "microsmash",
   "version": "0.1.0",
   "scripts": {
-    "start": "./node_modules/.bin/live-server src",
+    "start": "./node_modules/.bin/live-server --mount=/:src",
     "build": "./node_modules/.bin/webpack --config webpack.config.js"
   },
   "repository": "https://github.com/Hungary4Success/microsmash.git",
