@@ -1,6 +1,6 @@
 'use strict';
 
-import * as PIXI from 'pixi.js';
+import './external/pixi.min.js';
 
 class GameObject {
 	constructor(sprites, xPos, yPos, loaded){
