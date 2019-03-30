@@ -1,7 +1,7 @@
-'use strict';
+/* global PIXI */
 
 import './external/pixi.min.js';
-import { GameObject } from "./scripts/game-engine.js"
+import { GameObject } from "./game-engine.js"
 
 
 const app = new PIXI.Application({

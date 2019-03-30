@@ -4,7 +4,7 @@ const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/scripts/main.js',
   mode: 'production',
   // Disable bundle size warning
   performance: { hints: false },
