@@ -2,10 +2,16 @@
 This is the funnest game ever! Play it!!!!!
 
 ## Setup
+
+### Web
 1. Clone or download project
 2. Install `Node.js` and `Yarn`
 3. Open root of the project in command line
 4. Install dependencies with `yarn install`
+
+### Micro:bit
+1. Run uflash microsmash/micdocode/controller.py
+2. Wait for the flashing light on the device to stop
 
 ## Build for production
 1. Do the setup above
