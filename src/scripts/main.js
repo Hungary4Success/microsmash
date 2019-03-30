@@ -1,7 +1,7 @@
 import "./external/dap.bundle.js";
 import "./external/pixi.min.js";
-import "./input.js";
-import "./connect.js";
+import { connectToDevice } from "./input.js";
+
 import { GameObject } from "./game-engine.js";
 import { registerHandler, UserAction } from "./input.js";
 
@@ -26,10 +26,7 @@ function appStart() {
   aThing.setPosition(aThing.getWidth() / 2, 512);
   aThing.playAnimation(idleAnim, true);
 
-  registerHandler(UserAction.RIGHT, function() {
-    console.log("RIGHT");
-    aThing.moveX(5);
-  });
+document.getElementById("connectButton").addEventListener("click", connectToDevice);
 
   registerHandler(UserAction.LEFT, function() {
     console.log("LEFT");
