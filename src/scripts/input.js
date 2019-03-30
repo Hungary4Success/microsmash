@@ -69,16 +69,17 @@ function executeCommandQueue() {
 
   isExecuting = true;
 
-  let nonEmptyQueues;
+  let nonEmptyQueues = Object.entries(commandQueues);
   do {
-    nonEmptyQueues = Object.entries(commandQueues).filter(queue => queue.length > 0);
+    for (let i = 0; i < nonEmptyQueues.length; i++) {
+      const currentCommand = commandQueues[nonEmptyQueues[i][0]].shift();
 
-    console.log(nonEmptyQueues);
-
-    for (let i = 0; i < nonEmptyQueues; i++) {
-      const currentCommand = nonEmptyQueues[i].shift();
-      executeCommand(UserAction[currentCommand.actionString]);
+      if (currentCommand !== undefined) {
+        executeCommand(UserAction[currentCommand.actionString]);
+      }
     }
+
+    nonEmptyQueues = Object.entries(commandQueues).filter(queue => queue[1].length > 0);
   } while (nonEmptyQueues.length > 0);
 
   isExecuting = false;
