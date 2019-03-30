@@ -1,42 +1,45 @@
 /* eslint import/prefer-default-export: 0 */
 
 export class GameObject {
-  constructor(stage, sprites, loaded) {
-    const instance = this;
+  constructor(stage) {
+    this.stage = stage;
+    this.animations = {};
+  }
 
-    instance.stage = stage;
+  playAnimation(name, loop, onFinish) {
+    let animation = this.animations[name];
+    animation.animationSpeed = 0.167;
+    animation.loop = false;
 
-    PIXI.Loader.shared.add(sprites).load(() => {
-      instance.sprites = new PIXI.AnimatedSprite(
-        PIXI.Loader.shared.resources[sprites].spritesheet.animations.dead
+    if (typeof onFinish === "function") {
+      animation.onComplete = function () {onFinish(animation)};
+    }
+
+    animation.play();
+    this.stage.addChild(animation);
+  }
+
+  isVisible(name, value) {
+    this.animations[name].visible = value;
+  }
+
+  setPosition(name, posX, posY) {
+    this.animations[name].position.x = posX;
+    this.animations[name].position.y = posY;
+  }
+
+  setScale(name, value) {
+    this.animations[name].scale.x = this.animations[name].scale.y = value;
+  }
+
+  addAnimation(name, success) {
+    PIXI.loader.add(name).load(() => {
+      this.animations[name] = new PIXI.extras.AnimatedSprite(
+        Object.values(PIXI.loader.resources[name].spritesheet.animations)[0]
       );
+      this.animations[name].pivot.x = this.animations[name].pivot.y = 0.5;
 
-      instance.sprites.pivot.x = instance.sprites.pivot.y = 0.5;
-
-      if (typeof loaded === "function") {
-        loaded(instance);
-      } else {
-        console.error("GameObject: loaded should be a function!");
-      }
+      success();
     });
-  }
-
-  display() {
-    this.sprites.animationSpeed = 0.167;
-    this.sprites.play();
-    this.stage.addChild(this.sprites);
-  }
-
-  isVisible(value) {
-    this.sprites.visible = value;
-  }
-
-  setPosition(posX, posY) {
-    this.sprites.position.x = posX;
-    this.sprites.position.y = posY;
-  }
-
-  setScale(value) {
-    this.sprites.scale.x = this.sprites.scale.y = value;
   }
 }
