@@ -6,13 +6,17 @@ export class GameObject {
     this.animations = {};
   }
 
-  playAnimation(name, loop, onFinish) {
-    let animation = this.animations[name];
+  playAnimation(name, loop) {
+    const animation = this.animations[name];
     animation.animationSpeed = 0.167;
     animation.loop = false;
+    animation.visible = true;
 
-    if (typeof onFinish === "function") {
-      animation.onComplete = function () {onFinish(animation)};
+    if (!loop) {
+      animation.onComplete = function () {
+        animation.visible = false;
+        animation.gotoAndStop(0);
+      };
     }
 
     animation.play();

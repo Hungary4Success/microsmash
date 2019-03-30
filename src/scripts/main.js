@@ -18,9 +18,5 @@ aThing.addAnimation(deadAnimation, () => {
 });
 
 document.body.addEventListener("click", function () {
-  console.log("Click");
-  window.aThing.playAnimation(deadAnimation, false, function(animation) {
-    console.log("End");
-    animation.visible = false;
-  });
+  window.aThing.playAnimation(deadAnimation, false);
 });
