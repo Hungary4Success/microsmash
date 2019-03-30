@@ -1,6 +1,6 @@
 import "./external/pixi.min.js";
 import { GameObject } from "./game-engine.js";
-import "./input.js";
+import { registerHandler, UserAction } from "./input.js";
 
 const app = new PIXI.Application({
   width: 512,
@@ -9,14 +9,43 @@ const app = new PIXI.Application({
 });
 
 document.querySelector("#GameView").appendChild(app.view);
+app.ticker.add(delta => mainLoop(delta));
 
-window.deadAnimation = "animation/spritesheet.json";
-window.aThing = new GameObject(app.stage);
-aThing.addAnimation(deadAnimation, () => {
-  aThing.setPosition(deadAnimation ,0, 0);
+const deadAnimation = "animation/spritesheet.json";
+const allAnimations = [deadAnimation];
+PIXI.loader.add(allAnimations).load(appStart);
+
+function appStart() {
+  window.aThing = new GameObject(app.stage);
+  aThing.addAnimation(deadAnimation)
+  aThing.setPosition(0, 522);
   aThing.setScale(deadAnimation, 0.2);
-});
+  aThing.playAnimation(deadAnimation, true);
 
-document.body.addEventListener("click", function () {
-  window.aThing.playAnimation(deadAnimation, false);
-});
+  registerHandler(UserAction.RIGHT, function() {
+    console.log("RIGHT");
+    aThing.moveX(5);
+  });
+
+  registerHandler(UserAction.LEFT, function() {
+    console.log("LEFT");
+    aThing.moveX(-5);
+  });
+
+  registerHandler(UserAction.ATTACK, function() {
+    console.log("ATTACK");
+  });
+
+  registerHandler(UserAction.DEFENSE, function() {
+    console.log("DEFENSE");
+  });
+
+  registerHandler(UserAction.JUMP, function() {
+    console.log("JUMP");
+  });
+}
+
+
+function mainLoop(delta) {
+  //aThing.moveX(1 + delta);
+}
