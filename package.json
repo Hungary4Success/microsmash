@@ -2,9 +2,9 @@
   "name": "microsmash",
   "version": "0.1.0",
   "scripts": {
-    "dev": "webpack --config webpack.dev.js",
     "start": "./node_modules/.bin/live-server --mount=/:src --mount=animation:animation",
-    "build": "./node_modules/.bin/webpack --config webpack.config.js"
+    "build": "./node_modules/.bin/webpack --config webpack.config.js",
+    "lint": "./node_modules/.bin/eslint ."
   },
   "repository": "https://github.com/Hungary4Success/microsmash.git",
   "author": "Hungary4Success",

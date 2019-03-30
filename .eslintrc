@@ -4,7 +4,8 @@
         "sourceType": "module"
     },
     "rules": {
-        "comma-dangle": [2, "never"],
+        "comma-dangle": ["error", "never"],
+        "import/extensions": ["error", "always"],
         "no-alert": 0,
         "no-console": 0,
         "no-plusplus": 0,
