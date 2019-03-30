@@ -1,3 +1,4 @@
+import "./external/dap.bundle.js";
 import "./external/pixi.min.js";
 import "./input.js";
 import "./connect.js";
