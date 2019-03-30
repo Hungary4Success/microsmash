@@ -1,9 +1,11 @@
+/* global aThing */
+
 import "./external/dap.bundle.js";
 import "./external/pixi.min.js";
-import { connectToDevice } from "./input.js";
+
+import { UserAction, connectToDevice, registerHandler } from "./input.js";
 
 import { GameObject } from "./game-engine.js";
-import { registerHandler, UserAction } from "./input.js";
 
 let playerOneHealth = 70;
 let playerTwoHealth = 100;
@@ -33,25 +35,25 @@ function appStart() {
   aThing.setPosition(aThing.getWidth() / 2, 512);
   aThing.playAnimation(idleAnim, true);
 
-document.getElementById("connectButton").addEventListener("click", connectToDevice);
+  document.getElementById("connectButton").addEventListener("click", connectToDevice);
 
-  registerHandler(UserAction.LEFT, function() {
+  registerHandler(UserAction.LEFT, () => {
     console.log("LEFT");
     aThing.moveX(-5);
   });
 
-  registerHandler(UserAction.ATTACK, function() {
+  registerHandler(UserAction.ATTACK, () => {
     console.log("ATTACK");
-    aThing.playAnimation(attackAnim, false, function() {
+    aThing.playAnimation(attackAnim, false, () => {
       aThing.playAnimation(idleAnim, true);
     });
   });
 
-  registerHandler(UserAction.DEFENSE, function() {
+  registerHandler(UserAction.DEFENSE, () => {
     console.log("DEFENSE");
   });
 
-  registerHandler(UserAction.JUMP, function() {
+  registerHandler(UserAction.JUMP, () => {
     console.log("JUMP");
   });
 
