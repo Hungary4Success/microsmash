@@ -11,7 +11,8 @@ export class GameObject {
         PIXI.Loader.shared.resources[sprites].spritesheet.animations.dead
       );
 
-      instance.sprites.pivot.x = instance.sprites.pivot.y = 0.5;
+      instance.sprites.pivot.x = 0.5;
+      instance.sprites.pivot.y = 0.5;
 
       if (typeof loaded === "function") {
         loaded(instance);
@@ -37,6 +38,7 @@ export class GameObject {
   }
 
   setScale(value) {
-    this.sprites.scale.x = this.sprites.scale.y = value;
+    this.sprites.scale.x = value;
+    this.sprites.scale.y = value;
   }
 }
