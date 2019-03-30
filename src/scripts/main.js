@@ -1,7 +1,6 @@
 import "./external/dap.bundle.js";
 import "./external/pixi.min.js";
-import "./input.js";
-import "./connect.js";
+import { connectToDevice } from "./input.js";
 
 import { GameObject } from "./game-engine.js";
 
@@ -23,3 +22,5 @@ aThing.addAnimation(deadAnimation, () => {
 document.body.addEventListener("click", () => {
   window.aThing.playAnimation(deadAnimation, false);
 });
+
+document.getElementById("connectButton").addEventListener("click", connectToDevice);
