@@ -3,6 +3,7 @@ import "./external/pixi.min.js";
 import { connectToDevice } from "./input.js";
 
 import { GameObject } from "./game-engine.js";
+import { registerHandler, UserAction } from "./input.js";
 
 const app = new PIXI.Application({
   width: 512,
@@ -11,16 +12,19 @@ const app = new PIXI.Application({
 });
 
 document.querySelector("#GameView").appendChild(app.view);
+app.ticker.add(delta => mainLoop(delta));
 
-window.deadAnimation = "animation/tejasidle.json";
-window.aThing = new GameObject(app.stage);
-aThing.addAnimation(deadAnimation, () => {
-  aThing.setPosition(deadAnimation, 0, 0);
-  aThing.setScale(deadAnimation, 0.2);
-});
+const idleAnim = "animation/tejasidle.json";
+const attackAnim = "animation/tejasattack.json";
+const allAnimations = [idleAnim, attackAnim];
+PIXI.loader.add(allAnimations).load(appStart);
 
-document.body.addEventListener("click", () => {
-  window.aThing.playAnimation(deadAnimation, false);
-});
+function appStart() {
+  window.aThing = new GameObject(app.stage);
+  aThing.addAnimation(attackAnim);
+  aThing.addAnimation(idleAnim);
+  aThing.setScale(0.5);
+  aThing.setPosition(aThing.getWidth() / 2, 512);
+  aThing.playAnimation(idleAnim, true);
 
 document.getElementById("connectButton").addEventListener("click", connectToDevice);
