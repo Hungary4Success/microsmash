@@ -1,5 +1,7 @@
 'use strict';
 
+import * as PIXI from 'pixi.js';
+
 export class GameObject {
     constructor(sprites, xPos, yPos, loaded){
         let instance = this;

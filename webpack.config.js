@@ -1,4 +1,5 @@
 const CopyPlugin = require('copy-webpack-plugin');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -19,6 +20,9 @@ module.exports = {
     new HtmlWebpackInlineSourcePlugin(),
     new CopyPlugin([
       { from: 'src/main.css', to: 'main.css' }
-    ])
+    ]),
+    new FileManagerPlugin({
+      onEnd: { delete: ['./dist/game.js'] }
+    })
   ]
 };
