@@ -7,11 +7,19 @@ export class GameObject {
   }
 
   playAnimation(name, loop, success) {
+    if (this.currentAnimation) {
+      this.currentAnimation.visible = false;
+    }
     const animation = this.animations[name];
     this.currentAnimation = animation;
     animation.animationSpeed = 0.167;
     animation.loop = loop;
     animation.visible = true;
+    animation.x = this.posX;
+    animation.y = this.posY;
+    if (this.scaleX) {
+      animation.scale.x = this.scaleX;
+    }
 
     if (!loop) {
       animation.onComplete = () => {
@@ -33,10 +41,11 @@ export class GameObject {
   }
 
   setPosition(posX, posY) {
+    this.posX = posX;
+    this.posY = posY;
     for (var key in this.animations) {
       this.animations[key].x = posX;
       this.animations[key].y = posY;
-      this.animations[key].play();
     }
   }
 
@@ -45,9 +54,10 @@ export class GameObject {
     let isGonnaFaceLeft = value < 0;
     if ((isLeftFacing && !isGonnaFaceLeft) || (!isLeftFacing && isGonnaFaceLeft)) {
       this.currentAnimation.scale.x *= -1;
-      console.log("Flip");
+      this.scaleX = this.currentAnimation.scale.x;
     }
     this.currentAnimation.x += value;
+    this.posX = this.currentAnimation.x;
   }
 
   moveY(value) {
@@ -55,15 +65,17 @@ export class GameObject {
   }
 
   getPosX() {
-    return this.currentAnimation.x;
+    return this.posX;
   }
 
   getPosY() {
-    return this.currentAnimation.y;
+    return this.posY;
   }  
 
-  setScale(name, value) {
-    this.animations[name].scale.x = this.animations[name].scale.y = value;
+  setScale(value) {
+    for (var key in this.animations) {
+      this.animations[key].scale.x = this.animations[key].scale.y = value;
+    }
   }
 
   getWidth() {
