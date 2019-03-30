@@ -1,0 +1,105 @@
+{"frames": {
+
+"tejasdead_01.png":
+{
+	"frame": {"x":0,"y":0,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasdead_02.png":
+{
+	"frame": {"x":303,"y":0,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasdead_03.png":
+{
+	"frame": {"x":606,"y":0,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasdead_04.png":
+{
+	"frame": {"x":909,"y":0,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasdead_05.png":
+{
+	"frame": {"x":1212,"y":0,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasdead_06.png":
+{
+	"frame": {"x":0,"y":241,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasdead_07.png":
+{
+	"frame": {"x":303,"y":241,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasdead_08.png":
+{
+	"frame": {"x":606,"y":241,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasdead_09.png":
+{
+	"frame": {"x":909,"y":241,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasdead_10.png":
+{
+	"frame": {"x":1212,"y":241,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+}},
+"animations": {
+	"tejasdead": ["tejasdead_01.png","tejasdead_02.png","tejasdead_03.png","tejasdead_04.png","tejasdead_05.png","tejasdead_06.png","tejasdead_07.png","tejasdead_08.png","tejasdead_09.png","tejasdead_10.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "tejasdead.png",
+	"format": "RGBA8888",
+	"size": {"w":1515,"h":482},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:a9c59d64f68f41397bd2230e6484f503:bc9a233feefda92138dff5f21f1d9de0:87dcc332851c753bb2d7b6ea606e35c2$"
+}
+}
