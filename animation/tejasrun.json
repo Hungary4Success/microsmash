@@ -1,0 +1,105 @@
+{"frames": {
+
+"tejasrun_01.png":
+{
+	"frame": {"x":0,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasrun_02.png":
+{
+	"frame": {"x":200,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasrun_03.png":
+{
+	"frame": {"x":400,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasrun_04.png":
+{
+	"frame": {"x":600,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasrun_05.png":
+{
+	"frame": {"x":800,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasrun_06.png":
+{
+	"frame": {"x":1000,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasrun_07.png":
+{
+	"frame": {"x":1200,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasrun_08.png":
+{
+	"frame": {"x":1400,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasrun_09.png":
+{
+	"frame": {"x":1600,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasrun_10.png":
+{
+	"frame": {"x":1800,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+}},
+"animations": {
+	"tejasrun": ["tejasrun_01.png","tejasrun_02.png","tejasrun_03.png","tejasrun_04.png","tejasrun_05.png","tejasrun_06.png","tejasrun_07.png","tejasrun_08.png","tejasrun_09.png","tejasrun_10.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "tejasrun.png",
+	"format": "RGBA8888",
+	"size": {"w":2000,"h":241},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:19a4a8c3f8bc2ac5cace21b6eeae0009:5ba7e6d0d5670ba40d2c1a58690a4cc1:9c1f88ca72190f72b3d78f74f1af489e$"
+}
+}
