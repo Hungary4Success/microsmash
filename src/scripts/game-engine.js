@@ -13,7 +13,7 @@ export class GameObject {
     animation.visible = true;
 
     if (!loop) {
-      animation.onComplete = function () {
+      animation.onComplete = () => {
         animation.visible = false;
         animation.gotoAndStop(0);
       };
@@ -45,8 +45,5 @@ export class GameObject {
 
       success();
     });
-  setScale(value) {
-    this.sprites.scale.x = value;
-    this.sprites.scale.y = value;
   }
 }

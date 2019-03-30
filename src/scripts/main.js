@@ -12,13 +12,13 @@ const app = new PIXI.Application({
 
 document.querySelector("#GameView").appendChild(app.view);
 
-window.deadAnimation = "animation/spritesheet.json";
+window.deadAnimation = "animation/tejasidle.json";
 window.aThing = new GameObject(app.stage);
 aThing.addAnimation(deadAnimation, () => {
-  aThing.setPosition(deadAnimation ,0, 0);
+  aThing.setPosition(deadAnimation, 0, 0);
   aThing.setScale(deadAnimation, 0.2);
 });
 
-document.body.addEventListener("click", function () {
+document.body.addEventListener("click", () => {
   window.aThing.playAnimation(deadAnimation, false);
 });
