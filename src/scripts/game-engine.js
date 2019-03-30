@@ -45,5 +45,8 @@ export class GameObject {
 
       success();
     });
+  setScale(value) {
+    this.sprites.scale.x = value;
+    this.sprites.scale.y = value;
   }
 }
