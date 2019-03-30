@@ -2,8 +2,10 @@ import "./external/dap.bundle.js";
 import "./external/pixi.min.js";
 import { connectToDevice } from "./input.js";
 
-import { GameObject } from "./game-engine.js";
+import { GameObject, Player } from "./game-engine.js";
 import { registerHandler, UserAction } from "./input.js";
+
+document.getElementById("connectButton").addEventListener("click", connectToDevice);
 
 const app = new PIXI.Application({
   width: 512,
@@ -16,29 +18,19 @@ document.querySelector("#GameView").appendChild(app.view);
 const idleAnim = "animation/tejasidle.json";
 const attackAnim = "animation/tejasattack.json";
 const allAnimations = [idleAnim, attackAnim];
+const player1Animations = {"attack": attackAnim, "idle": idleAnim };
+
 PIXI.loader.add(allAnimations).load(appStart);
 
 function appStart() {
-  window.aThing = new GameObject(app.stage);
-  aThing.addAnimation(attackAnim);
-  aThing.addAnimation(idleAnim);
-  aThing.setScale(0.5);
-  aThing.setPosition(aThing.getWidth() / 2, 512);
-  aThing.playAnimation(idleAnim, true);
+  window.player1 = new Player(app.stage, player1Animations);
+  window.player1.playAnimation(idleAnim, true);
 
-document.getElementById("connectButton").addEventListener("click", connectToDevice);
+  registerHandler(UserAction.RIGHT, window.player1.rightHandler);
 
-  registerHandler(UserAction.LEFT, function() {
-    console.log("LEFT");
-    aThing.moveX(-5);
-  });
+  registerHandler(UserAction.LEFT, window.player1.leftHandler);
 
-  registerHandler(UserAction.ATTACK, function() {
-    console.log("ATTACK");
-    aThing.playAnimation(attackAnim, false, function() {
-      aThing.playAnimation(idleAnim, true);
-    });
-  });
+  registerHandler(UserAction.ATTACK, window.player1.attackHandler);
 
   registerHandler(UserAction.DEFENSE, function() {
     console.log("DEFENSE");
@@ -54,7 +46,7 @@ document.getElementById("connectButton").addEventListener("click", connectToDevi
 function drawLeftHealthBar() {
   //Create the health bar
   let healthBar = new PIXI.Container();
-  healthBar.position.set(window.aThing.getWidth() - 90, 12)
+  healthBar.position.set(window.player1.getWidth() - 90, 12)
   app.stage.addChild(healthBar);
 
   //Create the black background rectangle
