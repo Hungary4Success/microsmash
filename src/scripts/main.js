@@ -57,7 +57,7 @@ function appStart() {
 function drawLeftHealthBar() {
   //Create the health bar
   let healthBar = new PIXI.Container();
-  healthBar.position.set(window.aThing.getWidth() - 190, 12)
+  healthBar.position.set(window.aThing.getWidth() - 90, 12)
   app.stage.addChild(healthBar);
 
   //Create the black background rectangle
