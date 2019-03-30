@@ -26,4 +26,4 @@ while True:
         display.show(Image.TRIANGLE_LEFT)
         print(str(controllerId) + ",DEFENSE;", flush=True)
 
-    sleep(100)
+    sleep(200)

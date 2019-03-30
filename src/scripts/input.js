@@ -21,19 +21,25 @@ export async function connectToDevice() {
     const lines = data.split(";").filter(command => command !== "");
 
     lines.forEach((line) => {
-      const deviceId = line[0];
-      if (commandQueues[deviceId] === undefined) {
-        commandQueues[deviceId] = [];
+      const parameters = line.split(",");
+
+      const deviceIdRegExp = new RegExp(/\d+/);
+      if (deviceIdRegExp.test(parameters[0]) && parameters.length > 1) {
+        const deviceId = parseInt(deviceIdRegExp.exec(parameters[0])[0], 10);
+
+        if (commandQueues[deviceId] === undefined) {
+          commandQueues[deviceId] = [];
+        }
+
+        commandQueues[deviceId].push({
+          actionString: parameters[1],
+          actionParameter: parameters[2]
+        });
       }
-
-      commandQueues[deviceId].push({
-        actionString: line[1],
-        actionParameter: line[2]
-      });
     });
-  });
 
-  executeCommandQueue();
+    executeCommandQueue();
+  });
 }
 
 export const UserAction = Object.freeze({
@@ -63,12 +69,17 @@ function executeCommandQueue() {
 
   isExecuting = true;
 
-  while (commandQueues.some(queue => queue.length > 0)) {
-    for (let i = 0; i < commandQueues.length; i++) {
-      const currentCommand = commandQueues[i].shift();
+  let nonEmptyQueues;
+  do {
+    nonEmptyQueues = Object.entries(commandQueues).filter(queue => queue.length > 0);
+
+    console.log(nonEmptyQueues);
+
+    for (let i = 0; i < nonEmptyQueues; i++) {
+      const currentCommand = nonEmptyQueues[i].shift();
       executeCommand(UserAction[currentCommand.actionString]);
     }
-  }
+  } while (nonEmptyQueues.length > 0);
 
   isExecuting = false;
 }

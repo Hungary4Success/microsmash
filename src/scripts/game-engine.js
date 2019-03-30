@@ -43,15 +43,19 @@ export class GameObject {
   setPosition(posX, posY) {
     this.posX = posX;
     this.posY = posY;
-    for (var key in this.animations) {
-      this.animations[key].x = posX;
-      this.animations[key].y = posY;
+
+    const animationNames = Object.keys(this.animations);
+    for (let i = 0; i < animationNames.length; i++) {
+      const currentAnimation = this.animations[animationNames[i]];
+
+      currentAnimation.x = posX;
+      currentAnimation.y = posY;
     }
   }
 
   moveX(value) {
-    let isLeftFacing = this.currentAnimation.scale.x < 0;
-    let isGonnaFaceLeft = value < 0;
+    const isLeftFacing = this.currentAnimation.scale.x < 0;
+    const isGonnaFaceLeft = value < 0;
     if ((isLeftFacing && !isGonnaFaceLeft) || (!isLeftFacing && isGonnaFaceLeft)) {
       this.currentAnimation.scale.x *= -1;
       this.scaleX = this.currentAnimation.scale.x;
@@ -70,11 +74,15 @@ export class GameObject {
 
   getPosY() {
     return this.posY;
-  }  
+  }
 
   setScale(value) {
-    for (var key in this.animations) {
-      this.animations[key].scale.x = this.animations[key].scale.y = value;
+    const animationNames = Object.keys(this.animations);
+    for (let i = 0; i < animationNames.length; i++) {
+      const currentAnimation = this.animations[animationNames[i]];
+
+      currentAnimation.scale.x = value;
+      currentAnimation.scale.y = value;
     }
   }
 
