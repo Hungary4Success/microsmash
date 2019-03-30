@@ -1,0 +1,105 @@
+{"frames": {
+
+"tejasidle_01.png":
+{
+	"frame": {"x":0,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasidle_02.png":
+{
+	"frame": {"x":200,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasidle_03.png":
+{
+	"frame": {"x":400,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasidle_04.png":
+{
+	"frame": {"x":600,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasidle_05.png":
+{
+	"frame": {"x":800,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasidle_06.png":
+{
+	"frame": {"x":1000,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasidle_07.png":
+{
+	"frame": {"x":1200,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasidle_08.png":
+{
+	"frame": {"x":1400,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasidle_09.png":
+{
+	"frame": {"x":1600,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"tejasidle_10.png":
+{
+	"frame": {"x":1800,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+}},
+"animations": {
+	"tejasidle": ["tejasidle_01.png","tejasidle_02.png","tejasidle_03.png","tejasidle_04.png","tejasidle_05.png","tejasidle_06.png","tejasidle_07.png","tejasidle_08.png","tejasidle_09.png","tejasidle_10.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "tejasidle.png",
+	"format": "RGBA8888",
+	"size": {"w":2000,"h":241},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:e70aabfbf1155a4c142f37c5877aec81:329b9f4792e4d769969a5308c60174f0:4ae929e13db5a31bf23e15690d66a985$"
+}
+}
