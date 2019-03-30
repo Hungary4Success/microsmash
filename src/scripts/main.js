@@ -5,6 +5,9 @@ import { connectToDevice } from "./input.js";
 import { GameObject } from "./game-engine.js";
 import { registerHandler, UserAction } from "./input.js";
 
+let playerOneHealth = 70;
+let playerTwoHealth = 60;
+
 const app = new PIXI.Application({
   width: 512,
   height: 512,
@@ -57,17 +60,40 @@ function drawLeftHealthBar() {
   healthBar.position.set(window.aThing.getWidth() - 90, 12)
   app.stage.addChild(healthBar);
 
-  //Create the black background rectangle
+  //Create the red background rectangle
   let innerBar = new PIXI.Graphics();
   innerBar.beginFill(0xFF3300);
   innerBar.drawRect(0, 0, 200, 12);
   innerBar.endFill();
   healthBar.addChild(innerBar);
 
-  //Create the front red rectangle
+  //Create the front green rectangle
   let outerBar = new PIXI.Graphics();
   outerBar.beginFill(0x33FF00);
-  outerBar.drawRect(0, 0, 150, 12);
+  outerBar.drawRect(0, 0, playerOneHealth * 2, 12);
+  outerBar.endFill();
+  healthBar.addChild(outerBar);
+
+  healthBar.outer = outerBar;
+}
+
+function drawRightHealthBar() {
+  //Create the health bar
+  let healthBar = new PIXI.Container();
+  healthBar.position.set(window.aThing.getWidth() + 200, 12)
+  app.stage.addChild(healthBar);
+
+  //Create the red background rectangle
+  let innerBar = new PIXI.Graphics();
+  innerBar.beginFill(0xFF3300);
+  innerBar.drawRect(0, 0, 200, 12);
+  innerBar.endFill();
+  healthBar.addChild(innerBar);
+
+  //Create the front green rectangle
+  let outerBar = new PIXI.Graphics();
+  outerBar.beginFill(0x33FF00);
+  outerBar.drawRect((100 - playerTwoHealth) * 2, 0, 200, 12);
   outerBar.endFill();
   healthBar.addChild(outerBar);
 
@@ -76,4 +102,5 @@ function drawLeftHealthBar() {
 
 function mainLoop(delta) {
   drawLeftHealthBar();
+  drawRightHealthBar();
 }
