@@ -12,7 +12,6 @@ const app = new PIXI.Application({
 });
 
 document.querySelector("#GameView").appendChild(app.view);
-app.ticker.add(delta => mainLoop(delta));
 
 const idleAnim = "animation/tejasidle.json";
 const allAnimations = [idleAnim];
@@ -46,9 +45,33 @@ function appStart() {
   registerHandler(UserAction.JUMP, function() {
     console.log("JUMP");
   });
+
+  app.ticker.add(delta => mainLoop(delta));
 }
 
+function drawLeftHealthBar() {
+  //Create the health bar
+  let healthBar = new PIXI.Container();
+  healthBar.position.set(window.aThing.getWidth() - 190, 12)
+  app.stage.addChild(healthBar);
+
+  //Create the black background rectangle
+  let innerBar = new PIXI.Graphics();
+  innerBar.beginFill(0xFF3300);
+  innerBar.drawRect(0, 0, 200, 12);
+  innerBar.endFill();
+  healthBar.addChild(innerBar);
+
+  //Create the front red rectangle
+  let outerBar = new PIXI.Graphics();
+  outerBar.beginFill(0x33FF00);
+  outerBar.drawRect(0, 0, 150, 12);
+  outerBar.endFill();
+  healthBar.addChild(outerBar);
+
+  healthBar.outer = outerBar;
+}
 
 function mainLoop(delta) {
-  //aThing.moveX(1 + delta);
+  drawLeftHealthBar();
 }
