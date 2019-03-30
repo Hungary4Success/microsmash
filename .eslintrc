@@ -13,7 +13,6 @@
         "strict": ["error", "global"]
     },
     "env": {
-        "browser": true,
-        "node": false
+        "browser": true
     }
 }
