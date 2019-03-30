@@ -22,6 +22,10 @@ const allAnimations = [idleAnim, attackAnim];
 PIXI.loader.add(allAnimations).load(appStart);
 
 function appStart() {
+  // Set background
+  let background = PIXI.Texture.fromImage("animation/background.webp");
+  app.stage.addChild(new PIXI.Sprite(background))
+
   window.aThing = new GameObject(app.stage);
   aThing.addAnimation(attackAnim);
   aThing.addAnimation(idleAnim);
