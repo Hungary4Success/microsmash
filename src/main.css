@@ -13,7 +13,7 @@ body {
 	padding: 10px;
 }
 
-.connectButton {
+#connectButton {
 	background-color:#44c767;
 	-moz-border-radius:18px;
 	-webkit-border-radius:18px;
@@ -28,10 +28,11 @@ body {
 	text-decoration:none;
 	text-shadow:0px 1px 0px #2f6627;
 }
-.connectButton:hover {
+#connectButton:hover {
 	background-color:#5cbf2a;
 }
-.connectButton:active {
+
+#connectButton:active {
 	position:relative;
 	top:1px;
 }
