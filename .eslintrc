@@ -5,7 +5,6 @@
     },
     "rules": {
         "comma-dangle": [2, "never"],
-        "import/extensions": ["error", "always"],
         "no-alert": 0,
         "no-console": 0,
         "no-plusplus": 0,
@@ -14,9 +13,11 @@
         "quotes": ["error", "double"]
     },
     "env": {
-        "browser": true
+        "browser": true,
+        "node": true
     },
     "globals": {
-        "PIXI": "readonly"
+        "PIXI": "readonly",
+        "DAPjs": "readonly"
     }
 }

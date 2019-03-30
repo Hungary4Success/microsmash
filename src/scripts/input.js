@@ -8,8 +8,8 @@ export const UserAction = Object.freeze({
 });
 
 export function registerHandler(action, handler) {
-  if (typeof action !== "number" && action >= Object.keys(UserAction).length) {
-    throw new Error("Action type is invalid.");
+  if (typeof action !== "number" || action >= Object.keys(UserAction).length) {
+    throw new Error("Action type is invalid. Use a type from UserAction enum.");
   }
 
   handlers[action] = handler;

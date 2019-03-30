@@ -1,6 +1,8 @@
 import "./external/pixi.min.js";
-import { GameObject } from "./game-engine.js";
 import "./input.js";
+import "./connect.js";
+
+import { GameObject } from "./game-engine.js";
 
 const app = new PIXI.Application({
   width: 512,
