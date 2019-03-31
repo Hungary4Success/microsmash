@@ -184,11 +184,13 @@ export class Player extends GameObject {
   }
 
   rightHandler() {
+    console.log(bigness);
     this.speedX = 5;
     this.freezeOrientation = false;
   }
 
   leftHandler() {
+    console.log(bigness);
     this.speedX = -5;
     this.freezeOrientation = false;
   }
