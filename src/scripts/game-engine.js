@@ -97,8 +97,7 @@ export class GameObject {
       );
       this.animations[name].anchor.y = 1;
       this.animations[name].anchor.x = 0.5;
-    }
-    else {
+    } else {
       console.error("GameObject: Cannot add animation that was not preloaded.");
     }
   }
@@ -113,15 +112,16 @@ export class Player extends GameObject {
     super(stage);
 
     const instance = this;
-    let animationKeys = Object.keys(animations);
-    for (var i = 0; i < animationKeys.length; i++) {
-      let animation = animations[animationKeys[i]];
+    const animationKeys = Object.keys(animations);
+    for (let i = 0; i < animationKeys.length; i++) {
+      const animation = animations[animationKeys[i]];
       instance.addAnimation(animation);
 
-      switch(animationKeys[i]) {
-        case "idle":   instance.idleAnim = animation; break;
-        case "walk":   instance.walkAnim = animation; break;
+      switch (animationKeys[i]) {
+        case "idle": instance.idleAnim = animation; break;
+        case "walk": instance.walkAnim = animation; break;
         case "attack": instance.attackAnim = animation; break;
+        default: break;
       }
     }
 
@@ -132,22 +132,26 @@ export class Player extends GameObject {
     instance.state = {
       health: 100,
       velocityX: 0
-    }
+    };
 
     instance.playAnimation(instance.idleAnim, true);
+
+    this.rightHandler = this.rightHandler.bind(this);
+    this.leftHandler = this.leftHandler.bind(this);
+    this.attackHandler = this.attackHandler.bind(this);
   }
 
-  rightHandler = (bignessxD, animation) => {
+  rightHandler() {
     console.log("RIGHT");
     this.moveX(10);
-  };
+  }
 
-  leftHandler = (bignessxD, animation) => {
+  leftHandler() {
     this.moveX(-10);
-  };
+  }
 
-  attackHandler = (animation) => {
-    this.playAnimation(animation, false, function() {
+  attackHandler(animation) {
+    this.playAnimation(animation, false, () => {
 
     });
   }
