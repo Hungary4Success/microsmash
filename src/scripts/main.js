@@ -19,6 +19,7 @@ document.querySelector("#GameView").appendChild(app.view);
 const idleAnim = "animation/tejasidle.json";
 const attackAnim = "animation/tejasattack.json";
 const runAnim = "animation/tejasrun.json";
+const jumpAnim = "animation/tejasdead.json";
 const deadAnim = "animation/tejasdead.json";
 
 const allAnimations = [idleAnim, attackAnim, runAnim, deadAnim];
@@ -27,7 +28,8 @@ const player1Animations = {
   attack: attackAnim,
   idle: idleAnim,
   run: runAnim,
-  dead: deadAnim
+  dead: deadAnim,
+  jump: jumpAnim
 };
 
 let players = [];
@@ -40,9 +42,7 @@ function addHandlers(controller, thisPlayer){
   controller.addActionListener(UserAction.LEFT, thisPlayer.leftHandler);
   controller.addActionListener(UserAction.JUMP, thisPlayer.jumpHandler);
   controller.addActionListener(UserAction.ATTACK, thisPlayer.attackHandler);
-  controller.addActionListener(UserAction.DEFENSE, () => {
-    console.log("DEFENSE");
-  });
+  controller.addActionListener(UserAction.DEFENSE, thisPlayer.defendHandler);
 }
 
 function appStart() {
@@ -52,13 +52,13 @@ function appStart() {
 
   if(debug){
     var controller = new Controller();
-    window.newPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
-    addHandlers(controller, newPlayer);
-    players.push(newPlayer);
-
-    window.player2 = new Player(null, app, player1Animations, players.length > 0 ? 462 : 50)
-    players.push(player2);
-
+    const firstPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
+    addHandlers(controller, firstPlayer);
+    players.push(firstPlayer);
+    var controller = new Controller();
+    const secondPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
+    addHandlers(controller, secondPlayer);
+    players.push(secondPlayer);
     app.ticker.add(delta => mainLoop(delta));
   }
 

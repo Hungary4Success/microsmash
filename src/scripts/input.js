@@ -11,6 +11,7 @@ export const UserAction = Object.freeze({
 });
 
 let connectedControllerIds = [];
+let activePlayers = 0;
 
 export class Controller {
   constructor(device) {
@@ -19,13 +20,23 @@ export class Controller {
     this.isExecuting = false;
 
     // Keyboard controls (for debugging)
-    const keyToAction = Object.freeze({
-      w: UserAction.JUMP,
-      a: UserAction.LEFT,
-      s: UserAction.DEFENSE,
-      d: UserAction.RIGHT,
-      " ": UserAction.ATTACK
-    });
+    if(activePlayers++ == 0){
+      var keyToAction = Object.freeze({
+        w: UserAction.JUMP,
+        a: UserAction.LEFT,
+        s: UserAction.DEFENSE,
+        d: UserAction.RIGHT,
+        " ": UserAction.ATTACK
+      });
+    }else{
+      var keyToAction = Object.freeze({
+        i: UserAction.JUMP,
+        j: UserAction.LEFT,
+        k: UserAction.DEFENSE,
+        l: UserAction.RIGHT,
+        m: UserAction.ATTACK
+      });
+    }
 
     window.addEventListener("keydown", ({ key }) => {
       const action = keyToAction[key];

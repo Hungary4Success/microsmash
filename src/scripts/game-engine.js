@@ -135,6 +135,8 @@ export class Player extends GameObject {
       switch (animationKeys[i]) {
         case "idle": instance.idleAnim = animation; break;
         case "run": instance.runAnim = animation; break;
+        case "dead": instance.deadAnim = animation; break;
+        case "jump": instance.jumpAnim = animation; break;
         case "attack": instance.attackAnim = animation; break;
         case "dead": instance.dieAnim = animation; break;
         default: break;
@@ -152,8 +154,10 @@ export class Player extends GameObject {
     instance.speedY = 0;
     instance.posX = startPosX;
     instance.dimensions = instance.currentAnimation.width;
-    instance.jumpheight = 15;
+    instance.jumpheight = 20;
     instance.jumping = false;
+    // If player is defending, the other player won't be able to deal damage
+    instance.defending = false;
 
     if (startPosX > app.view.width / 2) {
       instance.currentAnimation.scale.x *= -1;
@@ -163,6 +167,7 @@ export class Player extends GameObject {
     instance.leftHandler = instance.leftHandler.bind(this);
     instance.jumpHandler = instance.jumpHandler.bind(this);
     instance.attackHandler = instance.attackHandler.bind(this);
+    instance.defendHandler = instance.defendHandler.bind(this);
 
     instance.playAnimation(instance.idleAnim, true);
   }
@@ -202,7 +207,8 @@ export class Player extends GameObject {
   jumpHandler() {
     if(!this.jumping) {
       this.jumping = true;
-      // TODO add animation
+      // TODO add animation (doesn't work now)
+      this.playAnimation(this.jumpAnim, true);
       this.speedY = -this.jumpheight;
       this.freezeOrientation = false;
     }
@@ -211,7 +217,7 @@ export class Player extends GameObject {
   die() {
     console.log("DIE");
     const instance = this;
-    this.playAnimation(this.dieAnim, false, function() {
+    this.playAnimation(this.deadAnim, false, function() {
       instance.animations[instance.idleAnim].destroy();
       let text = new PIXI.Text("You Won",{fontFamily : 'Arial', fontSize: 24, fill : 0xff1010, align : 'center'});
       instance.app.stage.addChild(text);
@@ -220,13 +226,17 @@ export class Player extends GameObject {
   }
 
   attackHandler() {
+    if (this._blockAttack) return;
     console.log("Attack");
+
+    this._blockAttack = true;
 
     // Play the animation
     const instance = this;
     instance.velocityX = 0;
     instance.speedX = 0;
     instance.playAnimation(instance.attackAnim, false, () => {
+      this._blockAttack = false;
       instance.playAnimation(instance.idleAnim, true);
     });
 
@@ -246,5 +256,20 @@ export class Player extends GameObject {
           this.rightHitTarget.die();
         }
     }
+  }
+
+  defendHandler() {
+    console.log("Defend");
+
+    // Play the animation
+    const instance = this;
+    instance.velocityX = 0;
+    instance.speedX = 0;
+    instance.defending = true;
+    // Todo change animation from dead to defend
+    instance.playAnimation(instance.deadAnim, false, () => {
+      instance.defending = false;
+      instance.playAnimation(instance.idleAnim, true);
+    });
   }
 }
