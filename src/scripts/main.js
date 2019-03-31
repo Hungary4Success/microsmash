@@ -19,10 +19,10 @@ document.querySelector("#GameView").appendChild(app.view);
 const idleAnim = "animation/tejasidle.json";
 const attackAnim = "animation/tejasattack.json";
 const runAnim = "animation/tejasrun.json";
-const jumpAnim = "animation/tejasdead.json";
+const jumpAnim = "animation/tejsjump.json";
 const deadAnim = "animation/tejasdead.json";
 
-const allAnimations = [idleAnim, attackAnim, runAnim, deadAnim];
+const allAnimations = [idleAnim, attackAnim, runAnim, deadAnim, jumpAnim];
 
 const player1Animations = {
   attack: attackAnim,
@@ -197,12 +197,9 @@ function mainLoop() {
     }
 
     player.reduceVelocity(Math.abs(player.velocityX / 5));
-    // dif (player.velocityX === 0) {
-    // player.freezeOrientation = false;
-    // }
 
-    player.moveX(player.speedX);
     player.moveY(player.speedY);
+    player.moveX(player.speedX);
   });
 
   drawLeftHealthBar();

@@ -82,7 +82,7 @@ export class GameObject {
 
   moveY(value) {
     this.posY += value;
-    //this.currentAnimation.y = value;
+    this.currentAnimation.y = this.posY;
   }
 
   getPosX() {
@@ -186,11 +186,14 @@ export class Player extends GameObject {
       return;
     }
 
+    if (this._blovkMovement) {
+      return;
+    }
+    super.moveX(value);
+
     if (this.currentAnimation._blockAnims) {
       return;
     }
-
-    super.moveX(value);
     this.playAnimation(this.runAnim, true);
   }
 
@@ -225,7 +228,7 @@ export class Player extends GameObject {
     if(!this.jumping) {
       this.jumping = true;
       // TODO add animation (doesn't work now)
-      this.playAnimation(this.jumpAnim, true);
+      this.playAnimation(this.jumpAnim, false);
       this.speedY = -this.jumpheight;
       this.freezeOrientation = false;
     }
@@ -247,13 +250,19 @@ export class Player extends GameObject {
     console.log("Attack");
 
     this._blockAttack = true;
+    this._blovkMovement = true;
 
     // Play the animation
     const instance = this;
-    instance.velocityX = 0;
-    instance.speedX = 0;
+    console.log(instance.jumping);
+    if (!instance.jumping) {
+      instance.velocityX = 0;
+      instance.speedX = 0;
+    }
+    instance.currentAnimation._blockAnims = false;
     instance.playAnimation(instance.attackAnim, false, () => {
       this._blockAttack = false;
+      this._blovkMovement = false;
       instance.playAnimation(instance.idleAnim, true);
     });
 
@@ -276,6 +285,7 @@ export class Player extends GameObject {
   }
 
   defendHandler() {
+    return;
     console.log("Defend");
 
     // Play the animation
