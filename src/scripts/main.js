@@ -95,10 +95,10 @@ function drawRightHealthBar() {
   healthBar.outer = outerBar;
 }
 
-function mainLoop(delta) {
+function mainLoop() {
   if (window.player1.velocityX !== 0) {
-    window.player1.moveX(window.player1.velocityX + delta);
-    window.player1.reduceVelocity(Math.abs(window.player1.velocityX / 50));
+    window.player1.moveX(window.player1.velocityX);
+    window.player1.reduceVelocity(1);
   }
   drawLeftHealthBar();
   drawRightHealthBar();

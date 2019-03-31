@@ -141,10 +141,12 @@ export class Player extends GameObject {
 
     instance.health = 100;
     instance.velocityX = 0;
+    instance.maxVelocityX = 15;
+    instance.velocityStep = 5;
     
-    this.rightHandler = this.rightHandler.bind(this);
-    this.leftHandler = this.leftHandler.bind(this);
-    this.attackHandler = this.attackHandler.bind(this);
+    instance.rightHandler = instance.rightHandler.bind(this);
+    instance.leftHandler = instance.leftHandler.bind(this);
+    instance.attackHandler = instance.attackHandler.bind(this);
 
     instance.playAnimation(instance.idleAnim, true);
   }
@@ -157,29 +159,27 @@ export class Player extends GameObject {
     else if (this.velocityX < value) {
       this.velocityX += value;
     }
-    else {
-      this.velocityX = 0;
-    }
   }
 
   rightHandler = (bignessxD, animation) => {
-    this.velocityX += 10;
-    if (this.velocityX > 100) {
-      this.velocityX = 100;
+    this.velocityX += this.velocityStep;
+    if (this.velocityX > this.maxVelocityX) {
+      this.velocityX = this.maxVelocityX;
     }
   };
 
   leftHandler = (bignessxD, animation) => {
-    this.velocityX -= 10;
-    if (this.velocityX < -100) {
-      this.velocityX = -100;
+    this.velocityX -= this.velocityStep;
+    if (this.velocityX < -this.maxVelocityX) {
+      this.velocityX = -this.maxVelocityX;
     }
 
   };
 
   attackHandler = () => {
-    this.playAnimation(this.attackAnim, false, function() {
-      this.playAnimation(this.idleAnim, true);
+    const instance = this;
+    instance.playAnimation(instance.attackAnim, false, function() {
+      instance.playAnimation(instance.idleAnim, true);
     });
   }
 }
