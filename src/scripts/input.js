@@ -11,15 +11,16 @@ export const UserAction = Object.freeze({
 });
 
 let connectedControllerIds = [];
+let activePlayers = 0;
 
 export class Controller {
-  constructor(device, players) {
+  constructor(device) {
     this.device = device;
     this.actionHandlers = {};
     this.isExecuting = false;
 
     // Keyboard controls (for debugging)
-    if(players.length == 0){
+    if(activePlayers++ == 0){
       var keyToAction = Object.freeze({
         w: UserAction.JUMP,
         a: UserAction.LEFT,

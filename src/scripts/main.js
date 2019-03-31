@@ -51,11 +51,11 @@ function appStart() {
   app.stage.addChild(new PIXI.Sprite(background));
 
   if(debug){
-    var controller = new Controller(null, players);
+    var controller = new Controller();
     const firstPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
     addHandlers(controller, firstPlayer);
     players.push(firstPlayer);
-    var controller = new Controller(null, players);
+    var controller = new Controller();
     const secondPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
     addHandlers(controller, secondPlayer);
     players.push(secondPlayer);
