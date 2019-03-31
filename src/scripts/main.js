@@ -1,6 +1,6 @@
 import "./external/pixi.min.js";
 
-import { UserAction, connectToDevice, registerHandler } from "./input.js";
+import { Controller, UserAction, addControllerObserver } from "./input.js";
 
 import { Player } from "./game-engine.js";
 
@@ -30,21 +30,25 @@ function appStart() {
   window.player1 = new Player(app.stage, player1Animations);
   window.player1.playAnimation(idleAnim, true);
 
-  registerHandler(UserAction.RIGHT, window.player1.rightHandler);
+  // registerHandler(UserAction.RIGHT, window.player1.rightHandler);
 
-  registerHandler(UserAction.LEFT, window.player1.leftHandler);
+  // registerHandler(UserAction.LEFT, window.player1.leftHandler);
 
-  registerHandler(UserAction.ATTACK, window.player1.attackHandler);
+  // registerHandler(UserAction.ATTACK, window.player1.attackHandler);
 
-  registerHandler(UserAction.DEFENSE, () => {
-    console.log("DEFENSE");
+  // registerHandler(UserAction.DEFENSE, () => {
+  //   console.log("DEFENSE");
+  // });
+
+  // registerHandler(UserAction.JUMP, () => {
+  //   console.log("JUMP");
+  // });
+
+  addControllerObserver((controller) => {
+    console.log("added:", controller.device);
+  }, (controllerId) => {
+    console.log("removed", controllerId);
   });
-
-  registerHandler(UserAction.JUMP, () => {
-    console.log("JUMP");
-  });
-
-  document.getElementById("connectButton").addEventListener("click", connectToDevice);
 
   app.ticker.add(delta => mainLoop(delta));
 }
