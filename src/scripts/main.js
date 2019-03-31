@@ -9,7 +9,7 @@ const debug = false;
 const playerTwoHealth = 100;
 
 const app = new PIXI.Application({
-  width: 512,
+  width: 675,
   height: 512,
   antialias: true
 });
@@ -142,14 +142,14 @@ function drawRightHealthBar() {
   // Create the red background rectangle
   const innerBar = new PIXI.Graphics();
   innerBar.beginFill(0xFF3300);
-  innerBar.drawRect(0, 0, 200, 12);
+  innerBar.drawRect(150, 0, 200, 12);
   innerBar.endFill();
   healthBar.addChild(innerBar);
 
   // Create the front green rectangle
   const outerBar = new PIXI.Graphics();
   outerBar.beginFill(0x33FF00);
-  outerBar.drawRect((100 - players[1].health) * 2, 0, 200 - (100 - players[1].health) * 2, 12);
+  outerBar.drawRect((175 - players[1].health) * 2, 0, 200 - (100 - players[1].health) * 2, 12);
   outerBar.endFill();
   healthBar.addChild(outerBar);
 
