@@ -79,7 +79,7 @@ function appStart() {
   }
 
   addControllerObserver(async (controller) => {
-    const newPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
+    const newPlayer = new Player(controller, app, players.length === 0 ? player1Animations : player2Animations, players.length > 0 ? 462 : 50);
     addHandlers(controller, newPlayer);
     await controller.connectAsync();
 
