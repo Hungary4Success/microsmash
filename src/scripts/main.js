@@ -1,12 +1,11 @@
+/* global player1, player2 */
+
 import "./external/pixi.min.js";
 
-import { Controller, UserAction, addControllerObserver } from "./input.js";
-
 import { Player } from "./game-engine.js";
+import { addControllerObserver } from "./input.js";
 
 const playerTwoHealth = 100;
-
-document.getElementById("connectButton").addEventListener("click", connectToDevice);
 
 const app = new PIXI.Application({
   width: 512,
@@ -19,18 +18,18 @@ document.querySelector("#GameView").appendChild(app.view);
 const idleAnim = "animation/tejasidle.json";
 const attackAnim = "animation/tejasattack.json";
 const runAnim = "animation/tejasrun.json";
-const deadAnim = "animation/tejasdead.json"
+const deadAnim = "animation/tejasdead.json";
 
 const allAnimations = [idleAnim, attackAnim, runAnim, deadAnim];
 
-const player1Animations = { 
-  attack: attackAnim, 
-  idle: idleAnim, 
+const player1Animations = {
+  attack: attackAnim,
+  idle: idleAnim,
   run: runAnim,
-  dead: deadAnim 
+  dead: deadAnim
 };
 
-var players = [];
+const players = [];
 
 PIXI.loader.add(allAnimations).load(appStart);
 
@@ -84,8 +83,8 @@ function drawLeftHealthBar() {
   innerBar.endFill();
   healthBar.addChild(innerBar);
 
-  //Create the front green rectangle
-  let outerBar = new PIXI.Graphics();
+  // Create the front green rectangle
+  const outerBar = new PIXI.Graphics();
   outerBar.beginFill(0x33FF00);
   outerBar.drawRect(0, 0, window.player1.health * 2, 12);
   outerBar.endFill();

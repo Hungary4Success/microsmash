@@ -17,6 +17,23 @@ export class Controller {
     this.device = device;
     this.actionHandlers = {};
     this.isExecuting = false;
+
+    // Keyboard controls (for debugging)
+    const keyToAction = Object.freeze({
+      w: UserAction.JUMP,
+      a: UserAction.LEFT,
+      s: UserAction.DEFENSE,
+      d: UserAction.RIGHT,
+      " ": UserAction.ATTACK
+    });
+
+    window.addEventListener("keydown", ({ key }) => {
+      const action = keyToAction[key];
+
+      if (typeof this.actionHandlers[action] === "function") {
+        this.actionHandlers[action]();
+      }
+    });
   }
 
   async connectAsync() {
@@ -145,20 +162,3 @@ async function watchControllers() {
 
   setTimeout(watchControllers, 1000);
 }
-
-// Keyboard controls (for debugging)
-const keyToAction = Object.freeze({
-  w: UserAction.JUMP,
-  a: UserAction.LEFT,
-  s: UserAction.DEFENSE,
-  d: UserAction.RIGHT,
-  " ": UserAction.ATTACK
-});
-
-window.addEventListener("keydown", ({ key }) => {
-  const action = keyToAction[key];
-
-  if (typeof this.actionHandlers[action] === "function") {
-    this.actionHandlers[action]();
-  }
-});

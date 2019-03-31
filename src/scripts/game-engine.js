@@ -3,7 +3,7 @@
 export class GameObject {
   constructor(app) {
     this.app = app;
-    
+
     this.animations = {};
   }
 
@@ -66,8 +66,7 @@ export class GameObject {
     // Boundary checks
     if (this.currentAnimation.x < -(this.getWidth() / 2)) {
       this.currentAnimation.x = this.app.view.width + this.getWidth() / 2;
-    }
-    else if (this.currentAnimation.x > this.app.view.width + (this.getWidth() / 2)) {
+    } else if (this.currentAnimation.x > this.app.view.width + (this.getWidth() / 2)) {
       this.currentAnimation.x = -(this.getWidth() / 2);
     }
     this.posX = this.currentAnimation.x;
@@ -106,8 +105,7 @@ export class GameObject {
       );
       this.animations[name].anchor.y = 1;
       this.animations[name].anchor.x = 0.5;
-    }
-    else {
+    } else {
       console.error("GameObject: Cannot add animation that was not preloaded.");
     }
   }
@@ -148,7 +146,7 @@ export class Player extends GameObject {
     if (startPosX > app.view.width / 2) {
       instance.currentAnimation.scale.x *= -1;
     }
-    
+
     instance.rightHandler = instance.rightHandler.bind(this);
     instance.leftHandler = instance.leftHandler.bind(this);
     instance.attackHandler = instance.attackHandler.bind(this);
@@ -156,12 +154,11 @@ export class Player extends GameObject {
     instance.playAnimation(instance.idleAnim, true);
   }
 
-   
+
   reduceVelocity(value) {
     if (this.velocityX > value) {
       this.velocityX -= value;
-    } 
-    else if (this.velocityX < value) {
+    } else if (this.velocityX < value) {
       this.velocityX += value;
     }
   }
@@ -171,25 +168,24 @@ export class Player extends GameObject {
     this.playAnimation(this.runAnim, true);
   }
 
-  rightHandler = () => {
+  rightHandler() {
     this.velocityX += this.velocityStep;
     if (this.velocityX > this.maxVelocityX) {
       this.velocityX = this.maxVelocityX;
     }
-  };
+  }
 
-  leftHandler = () => {
+  leftHandler() {
     this.velocityX -= this.velocityStep;
     if (this.velocityX < -this.maxVelocityX) {
       this.velocityX = -this.maxVelocityX;
     }
+  }
 
-  };
-
-  attackHandler = () => {
+  attackHandler() {
     const instance = this;
     instance.velocityX = 0;
-    instance.playAnimation(instance.attackAnim, false, function() {
+    instance.playAnimation(instance.attackAnim, false, () => {
       instance.playAnimation(instance.idleAnim, true);
     });
   }
