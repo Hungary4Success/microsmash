@@ -254,7 +254,10 @@ export class Player extends GameObject {
     console.log("Attack");
 
     this._blockAttack = true;
-    this._blovkMovement = true;
+
+    if (!this.jumping) {
+      this._blovkMovement = true;
+    }
 
     // Play the animation
     const instance = this;
