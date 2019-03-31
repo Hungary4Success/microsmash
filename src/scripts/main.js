@@ -123,14 +123,14 @@ function drawRightHealthBar() {
 
 function mainLoop() {
   // Collision detection
-  players.forEach(function (player) {
-    players.forEach(function(otherPlayer) {
+  players.forEach((player) => {
+    players.forEach((otherPlayer) => {
       if (player === otherPlayer) {
         return;
       }
 
-      let halfWidth = player.getWidth() / 2 - player.getWidth() / 5;
-      let futureXPlayer = player.posX + player.speedX + player.velocityX;
+      const halfWidth = player.getWidth() / 2 - player.getWidth() / 5;
+      const futureXPlayer = player.posX + player.speedX + player.velocityX;
 
       player.isCollision = Math.abs(futureXPlayer - otherPlayer.posX) < halfWidth;
       player.collisionPartner = otherPlayer;
@@ -138,13 +138,12 @@ function mainLoop() {
       if (player.isCollision) {
         player.collisionSide = futureXPlayer < otherPlayer.posX ? "right" : "left";
       }
-
     });
 
     // Collison reaction
     if (player.isCollision) {
-      switch(player.collisionSide) {
-        case "right": 
+      switch (player.collisionSide) {
+        case "right":
           player.speedX = -5;
           player.velocityX = 1;
           player.freezeOrientation = true;
@@ -160,15 +159,17 @@ function mainLoop() {
           player.collisionPartner.velocityX = 1;
           player.collisionPartner.freezeOrientation = true;
           break;
+        default:
+          break;
       }
     }
 
     // Movement
-    player.speedX += player.velocityX
+    player.speedX += player.velocityX;
     player.reduceVelocity(Math.abs(player.velocityX / 5));
-    //dif (player.velocityX === 0) {
-      //player.freezeOrientation = false;
-    //}
+    // dif (player.velocityX === 0) {
+    // player.freezeOrientation = false;
+    // }
 
     player.moveX(player.speedX);
   });
