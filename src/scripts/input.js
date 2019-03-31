@@ -90,7 +90,6 @@ export class Controller {
       if (deviceIdRegExp.test(parameters[0]) && parameters.length > 1
         && parseInt(deviceIdRegExp.exec(parameters[0])[0], 10) > 10000) {
         if (typeof this.actionHandlers[UserAction[parameters[1]]] === "function") {
-          console.log(line);
           this.actionHandlers[UserAction[parameters[1]]](parameters[2]);
         }
         // const deviceId = parseInt(deviceIdRegExp.exec(parameters[0])[0], 10);

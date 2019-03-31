@@ -4,7 +4,7 @@ import { Controller, UserAction, addControllerObserver } from "./input.js";
 
 import { Player } from "./game-engine.js";
 
-const debug = true;
+const debug = false;
 
 const playerTwoHealth = 100;
 
@@ -30,7 +30,7 @@ const deadAnim2 = "animation/aldead.json";
 
 
 const allAnimations = [idleAnim1, attackAnim1, runAnim1, deadAnim1, jumpAnim1,
-                       idleAnim2, attackAnim2, runAnim2, /*deadAnim2,*/ jumpAnim2];
+  idleAnim2, attackAnim2, runAnim2, /* deadAnim2, */ jumpAnim2];
 
 const player1Animations = {
   attack: attackAnim1,
@@ -165,7 +165,7 @@ function mainLoop() {
       const futureXPlayer = player.posX + player.speedX + player.velocityX;
 
       player.isCollision = Math.abs(futureXPlayer - otherPlayer.posX) < halfWidth;
-      player.isCollision &= Math.abs(player.posY - otherPlayer.posY) < player.getHeight(); 
+      player.isCollision &= Math.abs(player.posY - otherPlayer.posY) < player.getHeight();
       player.collisionPartner = otherPlayer;
 
       if (player.isCollision) {
@@ -174,9 +174,9 @@ function mainLoop() {
 
       let canHit = Math.abs(otherPlayer.posX - player.posX) < player.getWidth();
       canHit &= Math.abs(player.posY - otherPlayer.posY) < player.getHeight();
-      player.rightHitTarget = (canHit && otherPlayer.posX > player.posX) ? otherPlayer : null; 
+      player.rightHitTarget = (canHit && otherPlayer.posX > player.posX) ? otherPlayer : null;
 
-      player.leftHitTarget = (canHit && otherPlayer.posX < player.posX) ? otherPlayer : null
+      player.leftHitTarget = (canHit && otherPlayer.posX < player.posX) ? otherPlayer : null;
     });
 
     // Collison reaction
