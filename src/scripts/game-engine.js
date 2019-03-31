@@ -1,8 +1,9 @@
 /* eslint import/prefer-default-export: 0 */
 
 export class GameObject {
-  constructor(stage) {
-    this.stage = stage;
+  constructor(app) {
+    this.app = app;
+    
     this.animations = {};
   }
 
@@ -33,7 +34,7 @@ export class GameObject {
     }
 
     animation.play();
-    this.stage.addChild(animation);
+    this.app.stage.addChild(animation);
   }
 
   isVisible(name, value) {
@@ -61,6 +62,14 @@ export class GameObject {
       this.scaleX = this.currentAnimation.scale.x;
     }
     this.currentAnimation.x += value;
+
+    // Boundary checks
+    if (this.currentAnimation.x < -(this.getWidth() / 2)) {
+      this.currentAnimation.x = this.app.view.width + this.getWidth() / 2;
+    }
+    else if (this.currentAnimation.x > this.app.view.width + (this.getWidth() / 2)) {
+      this.currentAnimation.x = -(this.getWidth() / 2);
+    }
     this.posX = this.currentAnimation.x;
   }
 
@@ -119,8 +128,8 @@ export class Player extends GameObject {
       instance.addAnimation(animation);
 
       switch(animationKeys[i]) {
-        case "idle":   instance.idleAnim = animation; break;
-        case "walk":   instance.walkAnim = animation; break;
+        case "idle":   instance.idleAnim =   animation; break;
+        case "run":    instance.runAnim =    animation; break;
         case "attack": instance.attackAnim = animation; break;
       }
     }
@@ -129,26 +138,42 @@ export class Player extends GameObject {
     instance.setScale(0.5);
     instance.setPosition(instance.getWidth() / 2, 512);
 
-    instance.state = {
-      health: 100,
-      velocityX: 0
-    }
+    instance.health = 100;
+    instance.velocityX = 0;
 
     instance.playAnimation(instance.idleAnim, true);
   }
 
+  reduceVelocity(value) {
+    if (this.velocityX > value) {
+      this.velocityX -= value;
+    } 
+    else if (this.velocityX < value) {
+      this.velocityX += value;
+    }
+    else {
+      this.velocityX = 0;
+    }
+  }
+
   rightHandler = (bignessxD, animation) => {
-    console.log("RIGHT");
-    this.moveX(10);
+    this.velocityX += 10;
+    if (this.velocityX > 100) {
+      this.velocityX = 100;
+    }
   };
 
   leftHandler = (bignessxD, animation) => {
-    this.moveX(-10);
+    this.velocityX -= 10;
+    if (this.velocityX < -100) {
+      this.velocityX = -100;
+    }
+
   };
 
-  attackHandler = (animation) => {
-    this.playAnimation(animation, false, function() {
-
+  attackHandler = () => {
+    this.playAnimation(this.attackAnim, false, function() {
+      this.playAnimation(this.idleAnim, true);
     });
   }
 }

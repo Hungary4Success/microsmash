@@ -30,7 +30,7 @@ function appStart() {
   let background = PIXI.Texture.fromImage("animation/background.webp");
   app.stage.addChild(new PIXI.Sprite(background))
 
-  window.player1 = new Player(app.stage, player1Animations);
+  window.player1 = new Player(app, player1Animations);
   window.player1.playAnimation(idleAnim, true);
 
   registerHandler(UserAction.RIGHT, window.player1.rightHandler);
@@ -97,6 +97,8 @@ function drawRightHealthBar() {
 }
 
 function mainLoop(delta) {
+  window.player1.moveX(window.player1.velocityX);
+  window.player1.reduceVelocity(Math.abs(window.player1.velocityX / 100));
   drawLeftHealthBar();
   drawRightHealthBar();
 }
