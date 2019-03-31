@@ -205,9 +205,6 @@ export class Player extends GameObject {
     if (!bigness) {
       this.speedX = 5;
     }
-    else if (bigness < 400) {
-      this.speedX = 0;
-    }
     else {
       this.speedX = bigness / 150;
     }
@@ -218,9 +215,6 @@ export class Player extends GameObject {
   leftHandler(bigness) {
     if (!bigness) {
       this.speedX = -5;
-    }
-    else if (bigness > -400) {
-      this.speedX = 0;
     }
     else {
       this.speedX = bigness / 150;

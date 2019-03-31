@@ -1,8 +1,6 @@
-// import "./external/dap.bundle.js"; // Start
+import "./external/dap.bundle.js";
 
-import DAPjs from "./external/dap.bundle.js"; // Build
-
-// const { DAPLink } = DAPjs; // Start
+const { DAPLink } = DAPjs;
 
 export const UserAction = Object.freeze({
   RIGHT: 0,
@@ -86,12 +84,13 @@ export class Controller {
     const lines = data.split(";").filter(command => command !== "");
 
     lines.forEach((line) => {
-      console.log(line);
       const parameters = line.split(",");
 
       const deviceIdRegExp = new RegExp(/\d+/);
-      if (deviceIdRegExp.test(parameters[0]) && parameters.length > 1) {
+      if (deviceIdRegExp.test(parameters[0]) && parameters.length > 1
+        && parseInt(deviceIdRegExp.exec(parameters[0])[0], 10) > 10000) {
         if (typeof this.actionHandlers[UserAction[parameters[1]]] === "function") {
+          console.log(line);
           this.actionHandlers[UserAction[parameters[1]]](parameters[2]);
         }
         // const deviceId = parseInt(deviceIdRegExp.exec(parameters[0])[0], 10);

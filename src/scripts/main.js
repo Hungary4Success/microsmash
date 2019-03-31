@@ -16,8 +16,6 @@ const app = new PIXI.Application({
 
 document.querySelector("#GameView").appendChild(app.view);
 
-console.log('abc');
-
 const idleAnim = "animation/tejasidle.json";
 const attackAnim = "animation/tejasattack.json";
 const runAnim = "animation/tejasrun.json";
