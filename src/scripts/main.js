@@ -34,6 +34,17 @@ let players = [];
 
 PIXI.loader.add(allAnimations).load(appStart);
 
+// Adds handlers for a player with given controller
+function addHandlers(controller, thisPlayer){
+  controller.addActionListener(UserAction.RIGHT, thisPlayer.rightHandler);
+  controller.addActionListener(UserAction.LEFT, thisPlayer.leftHandler);
+  controller.addActionListener(UserAction.JUMP, thisPlayer.jumpHandler);
+  controller.addActionListener(UserAction.ATTACK, thisPlayer.attackHandler);
+  controller.addActionListener(UserAction.DEFENSE, () => {
+    console.log("DEFENSE");
+  });
+}
+
 function appStart() {
   // Set background
   const background = PIXI.Texture.fromImage("animation/background.webp");
@@ -42,31 +53,14 @@ function appStart() {
   if(debug){
     var controller = new Controller();
     const newPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
-    controller.addActionListener(UserAction.RIGHT, newPlayer.rightHandler);
-    controller.addActionListener(UserAction.LEFT, newPlayer.leftHandler);
-    controller.addActionListener(UserAction.ATTACK, newPlayer.attackHandler);
-    controller.addActionListener(UserAction.DEFENSE, () => {
-      console.log("DEFENSE");
-    });
-    controller.addActionListener(UserAction.JUMP, () => {
-      console.log("JUMP");
-    });
+    addHandlers(controller, newPlayer);
     players.push(newPlayer);
     app.ticker.add(delta => mainLoop(delta));
   }
 
   addControllerObserver(async (controller) => {
     const newPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
-
-    controller.addActionListener(UserAction.RIGHT, newPlayer.rightHandler);
-    controller.addActionListener(UserAction.LEFT, newPlayer.leftHandler);
-    controller.addActionListener(UserAction.ATTACK, newPlayer.attackHandler);
-    controller.addActionListener(UserAction.DEFENSE, () => {
-      console.log("DEFENSE");
-    });
-    controller.addActionListener(UserAction.JUMP, () => {
-      console.log("JUMP");
-    });
+    addHandlers(controller, newPlayer);
     await controller.connectAsync();
 
     players.push(newPlayer);
@@ -184,12 +178,22 @@ function mainLoop() {
 
     // Movement
     player.speedX += player.velocityX;
+    
+    // Jump
+    if(player.jumping && player.speedY < player.jumpheight - 1)
+      player.speedY += 1;
+    else if(player.jumping && player.speedY == player.jumpheight - 1) {
+      player.jumping = false;
+      player.speedY = 0;
+    }
+
     player.reduceVelocity(Math.abs(player.velocityX / 5));
     // dif (player.velocityX === 0) {
     // player.freezeOrientation = false;
     // }
 
     player.moveX(player.speedX);
+    player.moveY(player.speedY);
   });
 
   drawLeftHealthBar();

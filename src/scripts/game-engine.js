@@ -81,7 +81,8 @@ export class GameObject {
   }
 
   moveY(value) {
-    this.currentAnimation.y = value;
+    this.posY += value;
+    //this.currentAnimation.y = value;
   }
 
   getPosX() {
@@ -145,9 +146,13 @@ export class Player extends GameObject {
 
     instance.health = 100;
     instance.velocityX = 0;
+    instance.velocityY = 0;
     instance.speedX = 0;
+    instance.speedY = 0;
     instance.posX = startPosX;
     instance.dimensions = instance.currentAnimation.width;
+    instance.jumpheight = 15;
+    instance.jumping = false;
 
     if (startPosX > app.view.width / 2) {
       instance.currentAnimation.scale.x *= -1;
@@ -155,6 +160,7 @@ export class Player extends GameObject {
 
     instance.rightHandler = instance.rightHandler.bind(this);
     instance.leftHandler = instance.leftHandler.bind(this);
+    instance.jumpHandler = instance.jumpHandler.bind(this);
     instance.attackHandler = instance.attackHandler.bind(this);
 
     instance.playAnimation(instance.idleAnim, true);
@@ -189,6 +195,12 @@ export class Player extends GameObject {
 
   leftHandler() {
     this.speedX = -5;
+    this.freezeOrientation = false;
+  }
+
+  jumpHandler() {
+    this.jumping = true;
+    this.speedY = -this.jumpheight;
     this.freezeOrientation = false;
   }
 
