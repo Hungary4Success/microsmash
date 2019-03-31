@@ -37,10 +37,9 @@ function appStart() {
   const background = PIXI.Texture.fromImage("animation/background.webp");
   app.stage.addChild(new PIXI.Sprite(background));
 
-  addControllerObserver((controller) => {
+  addControllerObserver(async (controller) => {
     const newPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
 
-    controller.addActionListener(UserAction.RIGHT, newPlayer.rightHandler);
     controller.addActionListener(UserAction.RIGHT, newPlayer.rightHandler);
     controller.addActionListener(UserAction.LEFT, newPlayer.leftHandler);
     controller.addActionListener(UserAction.ATTACK, newPlayer.attackHandler);
@@ -50,6 +49,7 @@ function appStart() {
     controller.addActionListener(UserAction.JUMP, () => {
       console.log("JUMP");
     });
+    await controller.connectAsync();
 
     players.push(newPlayer);
 

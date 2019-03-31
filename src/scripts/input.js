@@ -34,6 +34,8 @@ export class Controller {
         this.actionHandlers[action]();
       }
     });
+
+    this.handleDataReceive = this.handleDataReceive.bind(this);
   }
 
   async connectAsync() {
@@ -74,8 +76,8 @@ export class Controller {
 
       const deviceIdRegExp = new RegExp(/\d+/);
       if (deviceIdRegExp.test(parameters[0]) && parameters.length > 1) {
-        if (typeof this.actionHandlers[parameters[1]] === "function") {
-          this.actionHandlers[parameters[1]]();
+        if (typeof this.actionHandlers[UserAction[parameters[1]]] === "function") {
+          this.actionHandlers[UserAction[parameters[1]]]();
         }
         // const deviceId = parseInt(deviceIdRegExp.exec(parameters[0])[0], 10);
 
