@@ -12,10 +12,10 @@ while True:
         display.show(Image.ARROW_N)
         print(str(controllerId) + ",JUMP;", flush=True)
     # Tilting:
-    elif tilt > 400:
+    elif tilt > 0:
         display.show("R")
         print(str(controllerId) + ",RIGHT," + str(tilt) + ";", flush=True)
-    elif tilt < -400:
+    elif tilt < 0:
         display.show("L")
         print(str(controllerId) + ",LEFT," + str(tilt) + ";", flush=True)
     # Buttons

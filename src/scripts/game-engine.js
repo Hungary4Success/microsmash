@@ -138,7 +138,7 @@ export class Player extends GameObject {
         default: break;
       }
     }
-
+    
     instance.currentAnimation = instance.animations[instance.idleAnim];
     instance.setScale(0.5);
     instance.setPosition(instance.getWidth() / 2, 512);
@@ -159,7 +159,6 @@ export class Player extends GameObject {
 
     instance.playAnimation(instance.idleAnim, true);
   }
-
 
   reduceVelocity(value) {
     if (this.velocityX > value) {
@@ -184,13 +183,11 @@ export class Player extends GameObject {
   }
 
   rightHandler() {
-    console.log(bigness);
     this.speedX = 5;
     this.freezeOrientation = false;
   }
 
   leftHandler() {
-    console.log(bigness);
     this.speedX = -5;
     this.freezeOrientation = false;
   }

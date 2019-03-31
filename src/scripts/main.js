@@ -1,8 +1,10 @@
 import "./external/pixi.min.js";
 
-import { UserAction, addControllerObserver } from "./input.js";
+import { UserAction, addControllerObserver, Controller } from "./input.js";
 
 import { Player } from "./game-engine.js";
+
+const debug = true;
 
 const playerTwoHealth = 100;
 
@@ -36,6 +38,22 @@ function appStart() {
   // Set background
   const background = PIXI.Texture.fromImage("animation/background.webp");
   app.stage.addChild(new PIXI.Sprite(background));
+
+  if(debug){
+    var controller = new Controller();
+    const newPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
+    controller.addActionListener(UserAction.RIGHT, newPlayer.rightHandler);
+    controller.addActionListener(UserAction.LEFT, newPlayer.leftHandler);
+    controller.addActionListener(UserAction.ATTACK, newPlayer.attackHandler);
+    controller.addActionListener(UserAction.DEFENSE, () => {
+      console.log("DEFENSE");
+    });
+    controller.addActionListener(UserAction.JUMP, () => {
+      console.log("JUMP");
+    });
+    players.push(newPlayer);
+    app.ticker.add(delta => mainLoop(delta));
+  }
 
   addControllerObserver(async (controller) => {
     const newPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
