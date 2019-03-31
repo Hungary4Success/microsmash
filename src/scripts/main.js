@@ -1,9 +1,8 @@
-/* global player1, player2 */
-
 import "./external/pixi.min.js";
 
+import { UserAction, addControllerObserver } from "./input.js";
+
 import { Player } from "./game-engine.js";
-import { addControllerObserver } from "./input.js";
 
 const playerTwoHealth = 100;
 
@@ -29,7 +28,7 @@ const player1Animations = {
   dead: deadAnim
 };
 
-const players = [];
+let players = [];
 
 PIXI.loader.add(allAnimations).load(appStart);
 
@@ -38,42 +37,39 @@ function appStart() {
   const background = PIXI.Texture.fromImage("animation/background.webp");
   app.stage.addChild(new PIXI.Sprite(background));
 
-  /* --Player 1-- */
-  window.player1 = new Player(app, player1Animations, 50);
-  window.player1.playAnimation(idleAnim, true);
-
-  // registerHandler(UserAction.RIGHT, window.player1.rightHandler);
-  // registerHandler(UserAction.LEFT, window.player1.leftHandler);
-  // registerHandler(UserAction.ATTACK, window.player1.attackHandler);
-  // registerHandler(UserAction.DEFENSE, () => {
-  //   console.log("DEFENSE");
-  // });
-  // registerHandler(UserAction.JUMP, () => {
-  //   console.log("JUMP");
-  // });
   addControllerObserver((controller) => {
-    console.log("added:", controller.device);
+    const newPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
+
+    controller.addActionListener(UserAction.RIGHT, newPlayer.rightHandler);
+    controller.addActionListener(UserAction.RIGHT, newPlayer.rightHandler);
+    controller.addActionListener(UserAction.LEFT, newPlayer.leftHandler);
+    controller.addActionListener(UserAction.ATTACK, newPlayer.attackHandler);
+    controller.addActionListener(UserAction.DEFENSE, () => {
+      console.log("DEFENSE");
+    });
+    controller.addActionListener(UserAction.JUMP, () => {
+      console.log("JUMP");
+    });
+
+    players.push(newPlayer);
+
+    if (players.length === 1) {
+      document.getElementById("connectedPlayers").children[0].style = "display: block";
+    } else {
+      document.getElementById("connectedPlayers").children[1].style = "display: block";
+
+      // Start main loop
+      app.ticker.add(delta => mainLoop(delta));
+    }
   }, (controllerId) => {
-    console.log("removed", controllerId);
+    players = players.filter(player => player.controller.device.serialNumber !== controllerId);
   });
-
-  players.push(player1);
-
-  /* --Player 2-- */
-  window.player2 = new Player(app, player1Animations, 462);
-  window.player2.playAnimation(idleAnim, true);
-
-
-  players.push(player2);
-
-  // Start main loop
-  app.ticker.add(delta => mainLoop(delta));
 }
 
 function drawLeftHealthBar() {
   // Create the health bar
   const healthBar = new PIXI.Container();
-  healthBar.position.set(window.player1.getWidth() - 90, 12);
+  healthBar.position.set(players[0].getWidth() - 90, 12);
   app.stage.addChild(healthBar);
 
   // Create the red background rectangle
@@ -86,7 +82,7 @@ function drawLeftHealthBar() {
   // Create the front green rectangle
   const outerBar = new PIXI.Graphics();
   outerBar.beginFill(0x33FF00);
-  outerBar.drawRect(0, 0, window.player1.health * 2, 12);
+  outerBar.drawRect(0, 0, players[0].health * 2, 12);
   outerBar.endFill();
   healthBar.addChild(outerBar);
 
@@ -96,7 +92,7 @@ function drawLeftHealthBar() {
 function drawRightHealthBar() {
   // Create the health bar
   const healthBar = new PIXI.Container();
-  healthBar.position.set(window.player1.getWidth() + 200, 12);
+  healthBar.position.set(players[0].getWidth() + 200, 12);
   app.stage.addChild(healthBar);
 
   // Create the red background rectangle
