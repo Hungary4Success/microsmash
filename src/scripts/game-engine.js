@@ -194,17 +194,34 @@ export class Player extends GameObject {
     this.playAnimation(this.runAnim, true);
   }
 
-  rightHandler() {
-    this.speedX = 5;
+  rightHandler(bigness) {
+    if (!bigness) {
+      this.speedX = 5;
+    }
+    else if (bigness < 400) {
+      this.speedX = 0;
+    }
+    else {
+      this.speedX = bigness / 150;
+    }
+
     this.freezeOrientation = false;
   }
 
-  leftHandler() {
-    this.speedX = -5;
+  leftHandler(bigness) {
+    if (!bigness) {
+      this.speedX = -5;
+    }
+    else if (bigness > -400) {
+      this.speedX = 0;
+    }
+    else {
+      this.speedX = bigness / 150;
+    }
     this.freezeOrientation = false;
   }
 
-  jumpHandler() {
+  jumpHandler(bigness) {
     if(!this.jumping) {
       this.jumping = true;
       // TODO add animation (doesn't work now)
