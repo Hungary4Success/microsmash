@@ -8,6 +8,9 @@ export class GameObject {
   }
 
   playAnimation(name, loop, success) {
+    if (this.currentAnimation && this.currentAnimation._blockAnims) {
+      return;
+    }
     if (this.currentAnimation) {
       this.currentAnimation.visible = false;
     }
@@ -23,9 +26,11 @@ export class GameObject {
     }
 
     if (!loop) {
+      animation._blockAnims = true;
       animation.onComplete = () => {
         animation.visible = false;
         animation.gotoAndStop(0);
+        animation._blockAnims = false;
 
         if (typeof success === "function") {
           success(animation);
@@ -55,22 +60,25 @@ export class GameObject {
   }
 
   moveX(value) {
-    const isLeftFacing = this.currentAnimation.scale.x < 0;
-    const isGonnaFaceLeft = value < 0;
-    if ((isLeftFacing && !isGonnaFaceLeft) || (!isLeftFacing && isGonnaFaceLeft)) {
-      this.currentAnimation.scale.x *= -1;
-      this.scaleX = this.currentAnimation.scale.x;
+    if (!this.freezeOrientation) { 
+      const isLeftFacing = this.currentAnimation.scale.x < 0;
+      const isGonnaFaceLeft = value < 0;
+      if ((isLeftFacing && !isGonnaFaceLeft) || (!isLeftFacing && isGonnaFaceLeft)) {
+        this.currentAnimation.scale.x *= -1;
+        this.scaleX = this.currentAnimation.scale.x;
+      }
     }
-    this.currentAnimation.x += value;
+    this.posX += value;
 
     // Boundary checks
-    if (this.currentAnimation.x < -(this.getWidth() / 2)) {
-      this.currentAnimation.x = this.app.view.width + this.getWidth() / 2;
+    if (this.posX < -(this.getWidth() / 2)) {
+      this.posX = this.app.view.width + this.getWidth() / 2;
     }
-    else if (this.currentAnimation.x > this.app.view.width + (this.getWidth() / 2)) {
-      this.currentAnimation.x = -(this.getWidth() / 2);
+    else if (this.posX > this.app.view.width + (this.getWidth() / 2)) {
+      this.posX = -(this.getWidth() / 2);
     }
-    this.posX = this.currentAnimation.x;
+
+    this.currentAnimation.x = this.posX;
   }
 
   moveY(value) {
@@ -111,10 +119,6 @@ export class GameObject {
       console.error("GameObject: Cannot add animation that was not preloaded.");
     }
   }
-
-  Update() {
-    this.currentAnimation.x += 1;
-  }
 }
 
 export class Player extends GameObject {
@@ -141,9 +145,9 @@ export class Player extends GameObject {
 
     instance.health = 100;
     instance.velocityX = 0;
-    instance.maxVelocityX = 15;
-    instance.velocityStep = 5;
+    instance.speedX = 0;
     instance.posX = startPosX;
+    instance.dimensions = instance.currentAnimation.width;
 
     if (startPosX > app.view.width / 2) {
       instance.currentAnimation.scale.x *= -1;
@@ -167,28 +171,36 @@ export class Player extends GameObject {
   }
 
   moveX(value) {
+    if (Math.abs(value) < 0.1) {
+      this.playAnimation(this.idleAnim, true);
+      return;
+    }
+
+    if (this.currentAnimation._blockAnims) {
+      return;
+    }
+    
     super.moveX(value);
     this.playAnimation(this.runAnim, true);
   }
 
   rightHandler = () => {
-    this.velocityX += this.velocityStep;
-    if (this.velocityX > this.maxVelocityX) {
-      this.velocityX = this.maxVelocityX;
-    }
+    this.speedX = 5;
+    this.freezeOrientation = false;
   };
 
   leftHandler = () => {
-    this.velocityX -= this.velocityStep;
-    if (this.velocityX < -this.maxVelocityX) {
-      this.velocityX = -this.maxVelocityX;
-    }
-
+    this.speedX = -5;
+    this.freezeOrientation = false;
   };
 
   attackHandler = () => {
+    console.log("Attack");
+
+    // Play the animation
     const instance = this;
     instance.velocityX = 0;
+    instance.speedX = 0;
     instance.playAnimation(instance.attackAnim, false, function() {
       instance.playAnimation(instance.idleAnim, true);
     });
