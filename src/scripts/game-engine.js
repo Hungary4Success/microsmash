@@ -135,6 +135,8 @@ export class Player extends GameObject {
       switch (animationKeys[i]) {
         case "idle": instance.idleAnim = animation; break;
         case "run": instance.runAnim = animation; break;
+        case "dead": instance.deadAnim = animation; break;
+        case "jump": instance.jumpAnim = animation; break;
         case "attack": instance.attackAnim = animation; break;
         default: break;
       }
@@ -151,8 +153,10 @@ export class Player extends GameObject {
     instance.speedY = 0;
     instance.posX = startPosX;
     instance.dimensions = instance.currentAnimation.width;
-    instance.jumpheight = 15;
+    instance.jumpheight = 20;
     instance.jumping = false;
+    // If player is defending, the other player won't be able to deal damage
+    instance.defending = false;
 
     if (startPosX > app.view.width / 2) {
       instance.currentAnimation.scale.x *= -1;
@@ -162,6 +166,7 @@ export class Player extends GameObject {
     instance.leftHandler = instance.leftHandler.bind(this);
     instance.jumpHandler = instance.jumpHandler.bind(this);
     instance.attackHandler = instance.attackHandler.bind(this);
+    instance.defendHandler = instance.defendHandler.bind(this);
 
     instance.playAnimation(instance.idleAnim, true);
   }
@@ -201,7 +206,8 @@ export class Player extends GameObject {
   jumpHandler() {
     if(!this.jumping) {
       this.jumping = true;
-      // TODO add animation
+      // TODO add animation (doesn't work now)
+      this.playAnimation(this.jumpAnim, true);
       this.speedY = -this.jumpheight;
       this.freezeOrientation = false;
     }
@@ -215,6 +221,21 @@ export class Player extends GameObject {
     instance.velocityX = 0;
     instance.speedX = 0;
     instance.playAnimation(instance.attackAnim, false, () => {
+      instance.playAnimation(instance.idleAnim, true);
+    });
+  }
+
+  defendHandler() {
+    console.log("Defend");
+
+    // Play the animation
+    const instance = this;
+    instance.velocityX = 0;
+    instance.speedX = 0;
+    instance.defending = true;
+    // Todo change animation from dead to defend
+    instance.playAnimation(instance.deadAnim, false, () => {
+      instance.defending = false;
       instance.playAnimation(instance.idleAnim, true);
     });
   }
