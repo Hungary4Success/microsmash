@@ -30,7 +30,7 @@ const deadAnim2 = "animation/aldead.json";
 
 
 const allAnimations = [idleAnim1, attackAnim1, runAnim1, deadAnim1, jumpAnim1,
-  idleAnim2, attackAnim2, runAnim2, /* deadAnim2, */ jumpAnim2];
+  idleAnim2, attackAnim2, runAnim2, deadAnim2, jumpAnim2];
 
 const player1Animations = {
   attack: attackAnim1,
