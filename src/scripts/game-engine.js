@@ -186,12 +186,14 @@ export class Player extends GameObject {
     this.playAnimation(this.runAnim, true);
   }
 
-  rightHandler = () => {
+  rightHandler = (bigness) => {
+    console.log(bigness);
     this.speedX = 5;
     this.freezeOrientation = false;
   };
 
-  leftHandler = () => {
+  leftHandler = (bigness) => {
+    console.log(bigness);
     this.speedX = -5;
     this.freezeOrientation = false;
   };
