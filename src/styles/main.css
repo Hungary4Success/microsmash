@@ -1,5 +1,6 @@
 body {
-    background-color: rgb(1, 1, 1);
+	background-color: #303030;
+	font-family: 'Roboto', sans-serif;
 }
 
 .nice-text {
@@ -13,7 +14,7 @@ body {
 
 #banner {
 	margin: auto;
-	width: 40%;
+	margin-bottom: 50px;
 	text-align: center;
 }
 
