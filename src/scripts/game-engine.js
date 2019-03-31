@@ -116,10 +116,12 @@ export class GameObject {
 }
 
 export class Player extends GameObject {
-  constructor(app, animations, startPosX) {
+  constructor(controller, app, animations, startPosX) {
     super(app);
 
     const instance = this;
+    instance.controller = controller;
+
     const animationKeys = Object.keys(animations);
     for (let i = 0; i < animationKeys.length; i++) {
       const animation = animations[animationKeys[i]];
