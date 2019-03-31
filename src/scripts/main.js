@@ -4,7 +4,7 @@ import { Controller, UserAction, addControllerObserver } from "./input.js";
 
 import { Player } from "./game-engine.js";
 
-const debug = false;
+const debug = true;
 
 const playerTwoHealth = 100;
 

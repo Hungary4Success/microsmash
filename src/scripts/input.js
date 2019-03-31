@@ -150,7 +150,7 @@ export function addControllerObserver(addHandler, removeHandler) {
 }
 
 async function watchControllers() {
-  const devices = (await navigator.usb.getDevices()).filter(device => device.vendorId === 3368);
+  const devices = (await navigator.usb.getDevices());
   const deviceIds = devices.map(device => device.serialNumber);
 
   const addedControllers = deviceIds.filter(device => !connectedControllerIds.includes(device));
