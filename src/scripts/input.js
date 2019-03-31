@@ -1,45 +1,46 @@
+import "./external/dap.bundle.js";
+
 // Exported variables
 const commandQueues = {};
 
 const { DAPLink } = DAPjs;
 export async function connectToDevice() {
-  let currentDAPLink;
   try {
     const device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0xD28 }] });
     const usbDevice = new DAPjs.WebUSB(device);
-    currentDAPLink = new DAPLink(usbDevice);
+    const currentDAPLink = new DAPLink(usbDevice);
 
     await currentDAPLink.connect();
     await currentDAPLink.setSerialBaudrate(115200);
     await currentDAPLink.getSerialBaudrate();
     await currentDAPLink.startSerialRead(50);
+
+    currentDAPLink.on(DAPLink.EVENT_SERIAL_DATA, (data) => {
+      const lines = data.split(";").filter(command => command !== "");
+
+      lines.forEach((line) => {
+        const parameters = line.split(",");
+
+        const deviceIdRegExp = new RegExp(/\d+/);
+        if (deviceIdRegExp.test(parameters[0]) && parameters.length > 1) {
+          const deviceId = parseInt(deviceIdRegExp.exec(parameters[0])[0], 10);
+
+          if (commandQueues[deviceId] === undefined) {
+            commandQueues[deviceId] = [];
+          }
+
+          commandQueues[deviceId].push({
+            actionString: parameters[1],
+            actionParameter: parameters[2]
+          });
+        }
+      });
+
+      executeCommandQueue();
+    });
   } catch (_) {
     console.error("Error: Connection failed or cancelled.");
   }
-
-  currentDAPLink.on(DAPLink.EVENT_SERIAL_DATA, (data) => {
-    const lines = data.split(";").filter(command => command !== "");
-
-    lines.forEach((line) => {
-      const parameters = line.split(",");
-
-      const deviceIdRegExp = new RegExp(/\d+/);
-      if (deviceIdRegExp.test(parameters[0]) && parameters.length > 1) {
-        const deviceId = parseInt(deviceIdRegExp.exec(parameters[0])[0], 10);
-
-        if (commandQueues[deviceId] === undefined) {
-          commandQueues[deviceId] = [];
-        }
-
-        commandQueues[deviceId].push({
-          actionString: parameters[1],
-          actionParameter: parameters[2]
-        });
-      }
-    });
-
-    executeCommandQueue();
-  });
 }
 
 export const UserAction = Object.freeze({

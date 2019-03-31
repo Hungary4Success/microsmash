@@ -21,9 +21,9 @@ module.exports = {
     }),
     // Inline sources to avoid the need for a webserver
     new HtmlWebpackInlineSourcePlugin(),
-    // Copy included assets over to the build directory
     new CopyPlugin([
-      { from: "src/main.css", to: "main.css" }
+      { from: "src/styles/main.css", to: "styles/main.css" },
+      { from: "src/styles/roboto.css", to: "styles/roboto.css" }
     ]),
     // JS bundling cannot be disabled, so delete bundle after build
     new FileManagerPlugin({

@@ -122,15 +122,16 @@ export class Player extends GameObject {
     super(stage);
 
     const instance = this;
-    let animationKeys = Object.keys(animations);
-    for (var i = 0; i < animationKeys.length; i++) {
-      let animation = animations[animationKeys[i]];
+    const animationKeys = Object.keys(animations);
+    for (let i = 0; i < animationKeys.length; i++) {
+      const animation = animations[animationKeys[i]];
       instance.addAnimation(animation);
 
-      switch(animationKeys[i]) {
-        case "idle":   instance.idleAnim =   animation; break;
-        case "run":    instance.runAnim =    animation; break;
+      switch (animationKeys[i]) {
+        case "idle": instance.idleAnim = animation; break;
+        case "run": instance.runAnim = animation; break;
         case "attack": instance.attackAnim = animation; break;
+        default: break;
       }
     }
 
@@ -140,10 +141,15 @@ export class Player extends GameObject {
 
     instance.health = 100;
     instance.velocityX = 0;
+    
+    this.rightHandler = this.rightHandler.bind(this);
+    this.leftHandler = this.leftHandler.bind(this);
+    this.attackHandler = this.attackHandler.bind(this);
 
     instance.playAnimation(instance.idleAnim, true);
   }
 
+   
   reduceVelocity(value) {
     if (this.velocityX > value) {
       this.velocityX -= value;
