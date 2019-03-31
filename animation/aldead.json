@@ -1,0 +1,105 @@
+{"frames": {
+
+"aldead_01.png":
+{
+	"frame": {"x":0,"y":0,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aldead_02.png":
+{
+	"frame": {"x":303,"y":0,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aldead_03.png":
+{
+	"frame": {"x":606,"y":0,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aldead_04.png":
+{
+	"frame": {"x":909,"y":0,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aldead_05.png":
+{
+	"frame": {"x":1212,"y":0,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aldead_06.png":
+{
+	"frame": {"x":0,"y":241,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aldead_07.png":
+{
+	"frame": {"x":303,"y":241,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aldead_08.png":
+{
+	"frame": {"x":606,"y":241,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aldead_09.png":
+{
+	"frame": {"x":909,"y":241,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aldead_10.png":
+{
+	"frame": {"x":1212,"y":241,"w":303,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":241},
+	"sourceSize": {"w":303,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+}},
+"animations": {
+	"aldead": ["aldead_01.png","aldead_02.png","aldead_03.png","aldead_04.png","aldead_05.png","aldead_06.png","aldead_07.png","aldead_08.png","aldead_09.png","aldead_10.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "aldead.png",
+	"format": "RGBA8888",
+	"size": {"w":1515,"h":482},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:7ee88a4d67cdb3e4f489303e75ab5ced:c6ca70d68bd3981ca75c74431dd1d5c2:94fde4fedd30ee9b6f2751ef0bd71202$"
+}
+}
