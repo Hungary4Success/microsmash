@@ -122,10 +122,57 @@ function drawRightHealthBar() {
 }
 
 function mainLoop() {
-  if (players[0].velocityX !== 0) {
-    players[0].moveX(players[0].velocityX);
-    players[0].reduceVelocity(1);
-  }
+  // Collision detection
+  players.forEach(function (player) {
+    players.forEach(function(otherPlayer) {
+      if (player === otherPlayer) {
+        return;
+      }
+
+      let halfWidth = player.getWidth() / 2 - player.getWidth() / 5;
+      let futureXPlayer = player.posX + player.speedX + player.velocityX;
+
+      player.isCollision = Math.abs(futureXPlayer - otherPlayer.posX) < halfWidth;
+      player.collisionPartner = otherPlayer;
+
+      if (player.isCollision) {
+        player.collisionSide = futureXPlayer < otherPlayer.posX ? "right" : "left";
+      }
+
+    });
+
+    // Collison reaction
+    if (player.isCollision) {
+      switch(player.collisionSide) {
+        case "right": 
+          player.speedX = -5;
+          player.velocityX = 1;
+          player.freezeOrientation = true;
+          player.collisionPartner.speedX = 5;
+          player.collisionPartner.velocityX = -1;
+          player.collisionPartner.freezeOrientation = true;
+          break;
+        case "left":
+          player.speedX = 5;
+          player.velocityX = -1;
+          player.freezeOrientation = true;
+          player.collisionPartner.speedX = -5;
+          player.collisionPartner.velocityX = 1;
+          player.collisionPartner.freezeOrientation = true;
+          break;
+      }
+    }
+
+    // Movement
+    player.speedX += player.velocityX
+    player.reduceVelocity(Math.abs(player.velocityX / 5));
+    //dif (player.velocityX === 0) {
+      //player.freezeOrientation = false;
+    //}
+
+    player.moveX(player.speedX);
+  });
+
   drawLeftHealthBar();
   drawRightHealthBar();
 }
