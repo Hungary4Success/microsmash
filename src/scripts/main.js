@@ -1,6 +1,6 @@
 import "./external/pixi.min.js";
 
-import { UserAction, addControllerObserver, Controller } from "./input.js";
+import { Controller, UserAction, addControllerObserver } from "./input.js";
 
 import { Player } from "./game-engine.js";
 
@@ -15,6 +15,8 @@ const app = new PIXI.Application({
 });
 
 document.querySelector("#GameView").appendChild(app.view);
+
+console.log('abc');
 
 const idleAnim = "animation/tejasidle.json";
 const attackAnim = "animation/tejasattack.json";
@@ -37,7 +39,7 @@ let players = [];
 PIXI.loader.add(allAnimations).load(appStart);
 
 // Adds handlers for a player with given controller
-function addHandlers(controller, thisPlayer){
+function addHandlers(controller, thisPlayer) {
   controller.addActionListener(UserAction.RIGHT, thisPlayer.rightHandler);
   controller.addActionListener(UserAction.LEFT, thisPlayer.leftHandler);
   controller.addActionListener(UserAction.JUMP, thisPlayer.jumpHandler);
@@ -50,7 +52,7 @@ function appStart() {
   const background = PIXI.Texture.fromImage("animation/background.webp");
   app.stage.addChild(new PIXI.Sprite(background));
 
-  if(debug){
+  if (debug) {
     var controller = new Controller();
     const firstPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
     addHandlers(controller, firstPlayer);
@@ -189,11 +191,9 @@ function mainLoop() {
 
     // Movement
     player.speedX += player.velocityX;
-    
+
     // Jump
-    if(player.jumping && player.speedY < player.jumpheight - 1)
-      player.speedY += 1;
-    else if(player.jumping && player.speedY == player.jumpheight - 1) {
+    if (player.jumping && player.speedY < player.jumpheight - 1) { player.speedY += 1; } else if (player.jumping && player.speedY == player.jumpheight - 1) {
       player.jumping = false;
       player.speedY = 0;
     }

@@ -1,6 +1,8 @@
-import "./external/dap.bundle.js";
+// import "./external/dap.bundle.js"; // Start
 
-const { DAPLink } = DAPjs;
+import DAPjs from "./external/dap.bundle.js"; // Build
+
+// const { DAPLink } = DAPjs; // Start
 
 export const UserAction = Object.freeze({
   RIGHT: 0,
@@ -20,16 +22,17 @@ export class Controller {
     this.isExecuting = false;
 
     // Keyboard controls (for debugging)
-    if(activePlayers++ == 0){
-      var keyToAction = Object.freeze({
+    let keyToAction;
+    if (activePlayers++ === 0) {
+      keyToAction = Object.freeze({
         w: UserAction.JUMP,
         a: UserAction.LEFT,
         s: UserAction.DEFENSE,
         d: UserAction.RIGHT,
         " ": UserAction.ATTACK
       });
-    }else{
-      var keyToAction = Object.freeze({
+    } else {
+      keyToAction = Object.freeze({
         i: UserAction.JUMP,
         j: UserAction.LEFT,
         k: UserAction.DEFENSE,
@@ -83,12 +86,13 @@ export class Controller {
     const lines = data.split(";").filter(command => command !== "");
 
     lines.forEach((line) => {
+      console.log(line);
       const parameters = line.split(",");
 
       const deviceIdRegExp = new RegExp(/\d+/);
       if (deviceIdRegExp.test(parameters[0]) && parameters.length > 1) {
         if (typeof this.actionHandlers[UserAction[parameters[1]]] === "function") {
-          this.actionHandlers[UserAction[parameters[1]]]();
+          this.actionHandlers[UserAction[parameters[1]]](parameters[2]);
         }
         // const deviceId = parseInt(deviceIdRegExp.exec(parameters[0])[0], 10);
 
