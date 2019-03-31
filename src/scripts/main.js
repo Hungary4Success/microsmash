@@ -26,7 +26,7 @@ const idleAnim2 = "animation/alidle.json";
 const attackAnim2 = "animation/alattack.json";
 const runAnim2 = "animation/alrun.json";
 const jumpAnim2 = "animation/aljump.json";
-const deadAnim2 = "animation/tejasdead.json";
+const deadAnim2 = "animation/aldead.json";
 
 
 const allAnimations = [idleAnim1, attackAnim1, runAnim1, deadAnim1, jumpAnim1,
