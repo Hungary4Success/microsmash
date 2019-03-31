@@ -69,11 +69,11 @@ function appStart() {
 
   if (debug) {
     var controller = new Controller();
-    const firstPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
+    const firstPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 625 : 50);
     addHandlers(controller, firstPlayer);
     players.push(firstPlayer);
     var controller = new Controller();
-    const secondPlayer = new Player(controller, app, player2Animations, players.length > 0 ? 462 : 50);
+    const secondPlayer = new Player(controller, app, player2Animations, players.length > 0 ? 625 : 50);
     addHandlers(controller, secondPlayer);
     players.push(secondPlayer);
     app.ticker.add(delta => mainLoop(delta));
@@ -82,7 +82,7 @@ function appStart() {
   addControllerObserver(async (controller) => {
     playerCount++;
 
-    const newPlayer = new Player(controller, app, playerCount === 1 ? player1Animations : player2Animations, playerCount > 1 ? 462 : 50);
+    const newPlayer = new Player(controller, app, playerCount === 1 ? player1Animations : player2Animations, playerCount > 1 ? 625 : 50);
     addHandlers(controller, newPlayer);
     await controller.connectAsync();
 
