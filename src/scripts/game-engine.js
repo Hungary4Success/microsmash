@@ -152,7 +152,7 @@ export class Player extends GameObject {
     if (startPosX > app.view.width / 2) {
       instance.currentAnimation.scale.x *= -1;
     }
-    
+
     instance.rightHandler = instance.rightHandler.bind(this);
     instance.leftHandler = instance.leftHandler.bind(this);
     instance.attackHandler = instance.attackHandler.bind(this);
@@ -160,7 +160,7 @@ export class Player extends GameObject {
     instance.playAnimation(instance.idleAnim, true);
   }
 
-   
+
   reduceVelocity(value) {
     if (this.velocityX > value) {
       this.velocityX -= value;

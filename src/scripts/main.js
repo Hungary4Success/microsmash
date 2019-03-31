@@ -1,12 +1,11 @@
+/* global player1, player2 */
+
 import "./external/pixi.min.js";
 
-import { UserAction, connectToDevice, registerHandler } from "./input.js";
-
 import { Player } from "./game-engine.js";
+import { addControllerObserver } from "./input.js";
 
 const playerTwoHealth = 100;
-
-document.getElementById("connectButton").addEventListener("click", connectToDevice);
 
 const app = new PIXI.Application({
   width: 512,
@@ -19,18 +18,18 @@ document.querySelector("#GameView").appendChild(app.view);
 const idleAnim = "animation/tejasidle.json";
 const attackAnim = "animation/tejasattack.json";
 const runAnim = "animation/tejasrun.json";
-const deadAnim = "animation/tejasdead.json"
+const deadAnim = "animation/tejasdead.json";
 
 const allAnimations = [idleAnim, attackAnim, runAnim, deadAnim];
 
-const player1Animations = { 
-  attack: attackAnim, 
-  idle: idleAnim, 
+const player1Animations = {
+  attack: attackAnim,
+  idle: idleAnim,
   run: runAnim,
-  dead: deadAnim 
+  dead: deadAnim
 };
 
-var players = [];
+const players = [];
 
 PIXI.loader.add(allAnimations).load(appStart);
 
@@ -43,14 +42,19 @@ function appStart() {
   window.player1 = new Player(app, player1Animations, 50);
   window.player1.playAnimation(idleAnim, true);
 
-  registerHandler(UserAction.RIGHT, window.player1.rightHandler);
-  registerHandler(UserAction.LEFT, window.player1.leftHandler);
-  registerHandler(UserAction.ATTACK, window.player1.attackHandler);
-  registerHandler(UserAction.DEFENSE, () => {
-    console.log("DEFENSE");
-  });
-  registerHandler(UserAction.JUMP, () => {
-    console.log("JUMP");
+  // registerHandler(UserAction.RIGHT, window.player1.rightHandler);
+  // registerHandler(UserAction.LEFT, window.player1.leftHandler);
+  // registerHandler(UserAction.ATTACK, window.player1.attackHandler);
+  // registerHandler(UserAction.DEFENSE, () => {
+  //   console.log("DEFENSE");
+  // });
+  // registerHandler(UserAction.JUMP, () => {
+  //   console.log("JUMP");
+  // });
+  addControllerObserver((controller) => {
+    console.log("added:", controller.device);
+  }, (controllerId) => {
+    console.log("removed", controllerId);
   });
 
   players.push(player1);
@@ -79,8 +83,8 @@ function drawLeftHealthBar() {
   innerBar.endFill();
   healthBar.addChild(innerBar);
 
-  //Create the front green rectangle
-  let outerBar = new PIXI.Graphics();
+  // Create the front green rectangle
+  const outerBar = new PIXI.Graphics();
   outerBar.beginFill(0x33FF00);
   outerBar.drawRect(0, 0, window.player1.health * 2, 12);
   outerBar.endFill();
