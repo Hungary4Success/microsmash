@@ -16,20 +16,36 @@ const app = new PIXI.Application({
 
 document.querySelector("#GameView").appendChild(app.view);
 
-const idleAnim = "animation/tejasidle.json";
-const attackAnim = "animation/tejasattack.json";
-const runAnim = "animation/tejasrun.json";
-const jumpAnim = "animation/tejsjump.json";
-const deadAnim = "animation/tejasdead.json";
+const idleAnim1 = "animation/tejasidle.json";
+const attackAnim1 = "animation/tejasattack.json";
+const runAnim1 = "animation/tejasrun.json";
+const jumpAnim1 = "animation/tejsjump.json";
+const deadAnim1 = "animation/tejasdead.json";
 
-const allAnimations = [idleAnim, attackAnim, runAnim, deadAnim, jumpAnim];
+const idleAnim2 = "animation/alidle.json";
+const attackAnim2 = "animation/alattack.json";
+const runAnim2 = "animation/alrun.json";
+const jumpAnim2 = "animation/aljump.json";
+const deadAnim2 = "animation/tejasdead.json";
+
+
+const allAnimations = [idleAnim1, attackAnim1, runAnim1, deadAnim1, jumpAnim1,
+                       idleAnim2, attackAnim2, runAnim2, /*deadAnim2,*/ jumpAnim2];
 
 const player1Animations = {
-  attack: attackAnim,
-  idle: idleAnim,
-  run: runAnim,
-  dead: deadAnim,
-  jump: jumpAnim
+  attack: attackAnim1,
+  idle: idleAnim1,
+  run: runAnim1,
+  dead: deadAnim1,
+  jump: jumpAnim1
+};
+
+const player2Animations = {
+  attack: attackAnim2,
+  idle: idleAnim2,
+  run: runAnim2,
+  dead: deadAnim2,
+  jump: jumpAnim2
 };
 
 let players = [];
@@ -56,7 +72,7 @@ function appStart() {
     addHandlers(controller, firstPlayer);
     players.push(firstPlayer);
     var controller = new Controller();
-    const secondPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
+    const secondPlayer = new Player(controller, app, player2Animations, players.length > 0 ? 462 : 50);
     addHandlers(controller, secondPlayer);
     players.push(secondPlayer);
     app.ticker.add(delta => mainLoop(delta));
