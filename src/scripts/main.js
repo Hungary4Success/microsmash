@@ -19,8 +19,11 @@ document.querySelector("#GameView").appendChild(app.view);
 
 const idleAnim = "animation/tejasidle.json";
 const attackAnim = "animation/tejasattack.json";
-const allAnimations = [idleAnim, attackAnim];
-const player1Animations = { attack: attackAnim, idle: idleAnim };
+const runAnim = "animation/tejasrun.json";
+
+const allAnimations = [idleAnim, attackAnim, runAnim];
+
+const player1Animations = { attack: attackAnim, idle: idleAnim, run: runAnim };
 
 PIXI.loader.add(allAnimations).load(appStart);
 

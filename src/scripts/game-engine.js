@@ -161,14 +161,19 @@ export class Player extends GameObject {
     }
   }
 
-  rightHandler = (bignessxD, animation) => {
+  moveX(value) {
+    super.moveX(value);
+    this.playAnimation(this.runAnim, true);
+  }
+
+  rightHandler = () => {
     this.velocityX += this.velocityStep;
     if (this.velocityX > this.maxVelocityX) {
       this.velocityX = this.maxVelocityX;
     }
   };
 
-  leftHandler = (bignessxD, animation) => {
+  leftHandler = () => {
     this.velocityX -= this.velocityStep;
     if (this.velocityX < -this.maxVelocityX) {
       this.velocityX = -this.maxVelocityX;
@@ -178,6 +183,7 @@ export class Player extends GameObject {
 
   attackHandler = () => {
     const instance = this;
+    instance.velocityX = 0;
     instance.playAnimation(instance.attackAnim, false, function() {
       instance.playAnimation(instance.idleAnim, true);
     });
