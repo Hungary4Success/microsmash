@@ -55,7 +55,7 @@ function appStart() {
 
     if (players.length === 1) {
       document.getElementById("connectedPlayers").children[0].style = "display: block";
-    } else {
+    } else if (players.length === 2) {
       document.getElementById("connectedPlayers").children[1].style = "display: block";
 
       // Start main loop
@@ -63,6 +63,15 @@ function appStart() {
     }
   }, (controllerId) => {
     players = players.filter(player => player.controller.device.serialNumber !== controllerId);
+
+    if (players.length === 1) {
+      document.getElementById("connectedPlayers").children[1].style = "";
+    } else {
+      document.getElementById("connectedPlayers").children[0].style = "";
+
+      // Start main loop
+      app.ticker.add(delta => mainLoop(delta));
+    }
   });
 }
 
