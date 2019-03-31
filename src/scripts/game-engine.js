@@ -136,6 +136,7 @@ export class Player extends GameObject {
         case "idle": instance.idleAnim = animation; break;
         case "run": instance.runAnim = animation; break;
         case "attack": instance.attackAnim = animation; break;
+        case "dead": instance.dieAnim = animation; break;
         default: break;
       }
     }
@@ -207,6 +208,17 @@ export class Player extends GameObject {
     }
   }
 
+  die() {
+    console.log("DIE");
+    const instance = this;
+    this.playAnimation(this.dieAnim, false, function() {
+      instance.animations[instance.idleAnim].destroy();
+      let text = new PIXI.Text("You Won",{fontFamily : 'Arial', fontSize: 24, fill : 0xff1010, align : 'center'});
+      instance.app.stage.addChild(text);
+      instance.app.stop();
+    })
+  }
+
   attackHandler() {
     console.log("Attack");
 
@@ -217,5 +229,22 @@ export class Player extends GameObject {
     instance.playAnimation(instance.attackAnim, false, () => {
       instance.playAnimation(instance.idleAnim, true);
     });
+
+    // Deduct health if can hit
+    const isLeftFacing = this.currentAnimation.scale.x < 0;
+    if (isLeftFacing) {
+      if (this.leftHitTarget) {
+        this.leftHitTarget.health -= 10;
+        if (this.leftHitTarget.health === 0) {
+          this.leftHitTarget.die();
+        }
+      }
+    }
+    else if (this.rightHitTarget) {
+      this.rightHitTarget.health -= 10;
+      if (this.rightHitTarget.health === 0) {
+          this.rightHitTarget.die();
+        }
+    }
   }
 }

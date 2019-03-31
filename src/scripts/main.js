@@ -52,9 +52,13 @@ function appStart() {
 
   if(debug){
     var controller = new Controller();
-    const newPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
+    window.newPlayer = new Player(controller, app, player1Animations, players.length > 0 ? 462 : 50);
     addHandlers(controller, newPlayer);
     players.push(newPlayer);
+
+    window.player2 = new Player(null, app, player1Animations, players.length > 0 ? 462 : 50)
+    players.push(player2);
+
     app.ticker.add(delta => mainLoop(delta));
   }
 
@@ -126,7 +130,7 @@ function drawRightHealthBar() {
   // Create the front green rectangle
   const outerBar = new PIXI.Graphics();
   outerBar.beginFill(0x33FF00);
-  outerBar.drawRect((100 - playerTwoHealth) * 2, 0, 200 - (100 - playerTwoHealth) * 2, 12);
+  outerBar.drawRect((100 - players[1].health) * 2, 0, 200 - (100 - players[1].health) * 2, 12);
   outerBar.endFill();
   healthBar.addChild(outerBar);
 
@@ -150,6 +154,11 @@ function mainLoop() {
       if (player.isCollision) {
         player.collisionSide = futureXPlayer < otherPlayer.posX ? "right" : "left";
       }
+
+      let canHit = Math.abs(otherPlayer.posX - player.posX) < player.getWidth();
+      player.rightHitTarget = (canHit && otherPlayer.posX > player.posX) ? otherPlayer : null; 
+
+      player.leftHitTarget = (canHit && otherPlayer.posX < player.posX) ? otherPlayer : null
     });
 
     // Collison reaction
