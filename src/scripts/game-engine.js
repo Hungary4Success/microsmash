@@ -261,7 +261,6 @@ export class Player extends GameObject {
 
     // Play the animation
     const instance = this;
-    console.log(instance.jumping);
     if (!instance.jumping) {
       instance.velocityX = 0;
       instance.speedX = 0;
