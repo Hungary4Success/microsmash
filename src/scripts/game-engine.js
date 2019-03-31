@@ -199,9 +199,12 @@ export class Player extends GameObject {
   }
 
   jumpHandler() {
-    this.jumping = true;
-    this.speedY = -this.jumpheight;
-    this.freezeOrientation = false;
+    if(!this.jumping) {
+      this.jumping = true;
+      // TODO add animation
+      this.speedY = -this.jumpheight;
+      this.freezeOrientation = false;
+    }
   }
 
   attackHandler() {
