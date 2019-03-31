@@ -4,7 +4,6 @@ import { UserAction, connectToDevice, registerHandler } from "./input.js";
 
 import { Player } from "./game-engine.js";
 
-const playerOneHealth = 70;
 const playerTwoHealth = 100;
 
 document.getElementById("connectButton").addEventListener("click", connectToDevice);
@@ -20,10 +19,18 @@ document.querySelector("#GameView").appendChild(app.view);
 const idleAnim = "animation/tejasidle.json";
 const attackAnim = "animation/tejasattack.json";
 const runAnim = "animation/tejasrun.json";
+const deadAnim = "animation/tejasdead.json"
 
-const allAnimations = [idleAnim, attackAnim, runAnim];
+const allAnimations = [idleAnim, attackAnim, runAnim, deadAnim];
 
-const player1Animations = { attack: attackAnim, idle: idleAnim, run: runAnim };
+const player1Animations = { 
+  attack: attackAnim, 
+  idle: idleAnim, 
+  run: runAnim,
+  dead: deadAnim 
+};
+
+var players = [];
 
 PIXI.loader.add(allAnimations).load(appStart);
 
@@ -32,23 +39,30 @@ function appStart() {
   const background = PIXI.Texture.fromImage("animation/background.webp");
   app.stage.addChild(new PIXI.Sprite(background));
 
-  window.player1 = new Player(app, player1Animations);
+  /* --Player 1-- */
+  window.player1 = new Player(app, player1Animations, 50);
   window.player1.playAnimation(idleAnim, true);
 
   registerHandler(UserAction.RIGHT, window.player1.rightHandler);
-
   registerHandler(UserAction.LEFT, window.player1.leftHandler);
-
   registerHandler(UserAction.ATTACK, window.player1.attackHandler);
-
   registerHandler(UserAction.DEFENSE, () => {
     console.log("DEFENSE");
   });
-
   registerHandler(UserAction.JUMP, () => {
     console.log("JUMP");
   });
 
+  players.push(player1);
+
+  /* --Player 2-- */
+  window.player2 = new Player(app, player1Animations, 462);
+  window.player2.playAnimation(idleAnim, true);
+
+
+  players.push(player2);
+
+  // Start main loop
   app.ticker.add(delta => mainLoop(delta));
 }
 
@@ -68,7 +82,7 @@ function drawLeftHealthBar() {
   //Create the front green rectangle
   let outerBar = new PIXI.Graphics();
   outerBar.beginFill(0x33FF00);
-  outerBar.drawRect(0, 0, playerOneHealth * 2, 12);
+  outerBar.drawRect(0, 0, window.player1.health * 2, 12);
   outerBar.endFill();
   healthBar.addChild(outerBar);
 

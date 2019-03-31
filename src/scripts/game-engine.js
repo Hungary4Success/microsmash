@@ -118,8 +118,8 @@ export class GameObject {
 }
 
 export class Player extends GameObject {
-  constructor(stage, animations) {
-    super(stage);
+  constructor(app, animations, startPosX) {
+    super(app);
 
     const instance = this;
     const animationKeys = Object.keys(animations);
@@ -143,6 +143,11 @@ export class Player extends GameObject {
     instance.velocityX = 0;
     instance.maxVelocityX = 15;
     instance.velocityStep = 5;
+    instance.posX = startPosX;
+
+    if (startPosX > app.view.width / 2) {
+      instance.currentAnimation.scale.x *= -1;
+    }
     
     instance.rightHandler = instance.rightHandler.bind(this);
     instance.leftHandler = instance.leftHandler.bind(this);
