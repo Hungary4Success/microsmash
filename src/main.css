@@ -11,6 +11,12 @@ body {
 	margin: auto;
 }
 
+#banner {
+	margin: auto;
+	width: 40%;
+	text-align: center;
+}
+
 #connect {
 	margin: auto;
 	width: 98px;

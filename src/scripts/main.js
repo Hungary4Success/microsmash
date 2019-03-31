@@ -1,11 +1,11 @@
+/* global aThing */
+
 import "./external/dap.bundle.js";
 import "./external/pixi.min.js";
-import { connectToDevice } from "./input.js";
+
+import { UserAction, connectToDevice, registerHandler } from "./input.js";
 
 import { GameObject, Player } from "./game-engine.js";
-import { registerHandler, UserAction } from "./input.js";
-
-document.getElementById("connectButton").addEventListener("click", connectToDevice);
 
 let playerOneHealth = 70;
 let playerTwoHealth = 100;
@@ -43,7 +43,7 @@ function appStart() {
     console.log("DEFENSE");
   });
 
-  registerHandler(UserAction.JUMP, function() {
+  registerHandler(UserAction.JUMP, () => {
     console.log("JUMP");
   });
 
