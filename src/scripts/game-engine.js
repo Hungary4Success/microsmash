@@ -107,6 +107,10 @@ export class GameObject {
     return this.currentAnimation.width;
   }
 
+  getHeight() {
+    return this.currentAnimation.height;
+  }
+
   addAnimation(name) {
     if (PIXI.loader.resources[name]) {
       this.animations[name] = new PIXI.extras.AnimatedSprite(

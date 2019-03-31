@@ -149,6 +149,7 @@ function mainLoop() {
       const futureXPlayer = player.posX + player.speedX + player.velocityX;
 
       player.isCollision = Math.abs(futureXPlayer - otherPlayer.posX) < halfWidth;
+      player.isCollision &= Math.abs(player.posY - otherPlayer.posY) < player.getHeight(); 
       player.collisionPartner = otherPlayer;
 
       if (player.isCollision) {
@@ -156,6 +157,7 @@ function mainLoop() {
       }
 
       let canHit = Math.abs(otherPlayer.posX - player.posX) < player.getWidth();
+      canHit &= Math.abs(player.posY - otherPlayer.posY) < player.getHeight();
       player.rightHitTarget = (canHit && otherPlayer.posX > player.posX) ? otherPlayer : null; 
 
       player.leftHitTarget = (canHit && otherPlayer.posX < player.posX) ? otherPlayer : null
