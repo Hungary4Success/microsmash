@@ -1,8 +1,9 @@
 /* eslint import/prefer-default-export: 0 */
 
 export class GameObject {
-  constructor(stage) {
-    this.stage = stage;
+  constructor(app) {
+    this.app = app;
+    
     this.animations = {};
   }
 
@@ -33,7 +34,7 @@ export class GameObject {
     }
 
     animation.play();
-    this.stage.addChild(animation);
+    this.app.stage.addChild(animation);
   }
 
   isVisible(name, value) {
@@ -61,6 +62,14 @@ export class GameObject {
       this.scaleX = this.currentAnimation.scale.x;
     }
     this.currentAnimation.x += value;
+
+    // Boundary checks
+    if (this.currentAnimation.x < -(this.getWidth() / 2)) {
+      this.currentAnimation.x = this.app.view.width + this.getWidth() / 2;
+    }
+    else if (this.currentAnimation.x > this.app.view.width + (this.getWidth() / 2)) {
+      this.currentAnimation.x = -(this.getWidth() / 2);
+    }
     this.posX = this.currentAnimation.x;
   }
 
@@ -97,7 +106,8 @@ export class GameObject {
       );
       this.animations[name].anchor.y = 1;
       this.animations[name].anchor.x = 0.5;
-    } else {
+    }
+    else {
       console.error("GameObject: Cannot add animation that was not preloaded.");
     }
   }
@@ -108,8 +118,8 @@ export class GameObject {
 }
 
 export class Player extends GameObject {
-  constructor(stage, animations) {
-    super(stage);
+  constructor(app, animations, startPosX) {
+    super(app);
 
     const instance = this;
     const animationKeys = Object.keys(animations);
@@ -119,7 +129,7 @@ export class Player extends GameObject {
 
       switch (animationKeys[i]) {
         case "idle": instance.idleAnim = animation; break;
-        case "walk": instance.walkAnim = animation; break;
+        case "run": instance.runAnim = animation; break;
         case "attack": instance.attackAnim = animation; break;
         default: break;
       }
@@ -129,30 +139,58 @@ export class Player extends GameObject {
     instance.setScale(0.5);
     instance.setPosition(instance.getWidth() / 2, 512);
 
-    instance.state = {
-      health: 100,
-      velocityX: 0
-    };
+    instance.health = 100;
+    instance.velocityX = 0;
+    instance.maxVelocityX = 15;
+    instance.velocityStep = 5;
+    instance.posX = startPosX;
+
+    if (startPosX > app.view.width / 2) {
+      instance.currentAnimation.scale.x *= -1;
+    }
+    
+    instance.rightHandler = instance.rightHandler.bind(this);
+    instance.leftHandler = instance.leftHandler.bind(this);
+    instance.attackHandler = instance.attackHandler.bind(this);
 
     instance.playAnimation(instance.idleAnim, true);
-
-    this.rightHandler = this.rightHandler.bind(this);
-    this.leftHandler = this.leftHandler.bind(this);
-    this.attackHandler = this.attackHandler.bind(this);
   }
 
-  rightHandler() {
-    console.log("RIGHT");
-    this.moveX(10);
+   
+  reduceVelocity(value) {
+    if (this.velocityX > value) {
+      this.velocityX -= value;
+    } 
+    else if (this.velocityX < value) {
+      this.velocityX += value;
+    }
   }
 
-  leftHandler() {
-    this.moveX(-10);
+  moveX(value) {
+    super.moveX(value);
+    this.playAnimation(this.runAnim, true);
   }
 
-  attackHandler(animation) {
-    this.playAnimation(animation, false, () => {
+  rightHandler = () => {
+    this.velocityX += this.velocityStep;
+    if (this.velocityX > this.maxVelocityX) {
+      this.velocityX = this.maxVelocityX;
+    }
+  };
 
+  leftHandler = () => {
+    this.velocityX -= this.velocityStep;
+    if (this.velocityX < -this.maxVelocityX) {
+      this.velocityX = -this.maxVelocityX;
+    }
+
+  };
+
+  attackHandler = () => {
+    const instance = this;
+    instance.velocityX = 0;
+    instance.playAnimation(instance.attackAnim, false, function() {
+      instance.playAnimation(instance.idleAnim, true);
     });
   }
 }
