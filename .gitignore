@@ -2,6 +2,8 @@
 # Created by https://www.gitignore.io/api/node,python,pycharm+all,sublimetext,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=node,python,pycharm+all,sublimetext,visualstudiocode
 
+*.orig
+
 ### Node ###
 # Logs
 logs
