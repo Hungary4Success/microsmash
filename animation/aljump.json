@@ -1,0 +1,105 @@
+{"frames": {
+
+"aljump_01.png":
+{
+	"frame": {"x":0,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aljump_02.png":
+{
+	"frame": {"x":200,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aljump_03.png":
+{
+	"frame": {"x":400,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aljump_04.png":
+{
+	"frame": {"x":600,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aljump_05.png":
+{
+	"frame": {"x":800,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aljump_06.png":
+{
+	"frame": {"x":1000,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aljump_07.png":
+{
+	"frame": {"x":1200,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aljump_08.png":
+{
+	"frame": {"x":1400,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aljump_09.png":
+{
+	"frame": {"x":1600,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"aljump_10.png":
+{
+	"frame": {"x":1800,"y":0,"w":200,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":241},
+	"sourceSize": {"w":200,"h":241},
+	"anchor": {"x":0.5,"y":0.5}
+}},
+"animations": {
+	"aljump": ["aljump_01.png","aljump_02.png","aljump_03.png","aljump_04.png","aljump_05.png","aljump_06.png","aljump_07.png","aljump_08.png","aljump_09.png","aljump_10.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "aljump.png",
+	"format": "RGBA8888",
+	"size": {"w":2000,"h":241},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:a7fe8c6b2bca7ae16c165d97b1c646cc:dc74e99923338473396dbb42bd0c53c5:e2686d92096dcfc1fa821a224b9a7a67$"
+}
+}
