@@ -22,15 +22,15 @@ const runAnim1 = "animation/tejasrun.json";
 const jumpAnim1 = "animation/tejsjump.json";
 const deadAnim1 = "animation/tejasdead.json";
 
-const idleAnim2 = "animation/tejasidle.json";
-const attackAnim2 = "animation/tejasattack.json";
+const idleAnim2 = "animation/alidle.json";
+const attackAnim2 = "animation/alattack.json";
 const runAnim2 = "animation/alrun.json";
 const jumpAnim2 = "animation/aljump.json";
 const deadAnim2 = "animation/tejasdead.json";
 
 
 const allAnimations = [idleAnim1, attackAnim1, runAnim1, deadAnim1, jumpAnim1,
-                       /*idleAnim2,*/ /*attackAnim2,*/ runAnim2, /*deadAnim2,*/ jumpAnim2];
+                       idleAnim2, attackAnim2, runAnim2, /*deadAnim2,*/ jumpAnim2];
 
 const player1Animations = {
   attack: attackAnim1,
