@@ -13,10 +13,6 @@ This is the funnest game ever! Play it!!!!!
 1. Run uflash microsmash/micdocode/controller.py
 2. Wait for the flashing light on the device to stop
 
-## Build for production
-1. Do the setup above
-2. Run `yarn build`
-
 ## Contribute
 1. Start the development webserver with `yarn start`
 Page will reload on every file change
