@@ -2,7 +2,7 @@
   "name": "microsmash",
   "version": "0.1.0",
   "scripts": {
-    "start": "./node_modules/.bin/http-server www -a localhost -p $PORT",
+    "start": "./node_modules/.bin/http-server www -p $PORT",
     "dev": "./node_modules/.bin/live-server www",
     "lint": "./node_modules/.bin/eslint ."
   },
