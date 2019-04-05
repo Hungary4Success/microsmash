@@ -16,17 +16,17 @@ const app = new PIXI.Application({
 
 document.querySelector("#GameView").appendChild(app.view);
 
-const idleAnim1 = "animation/tejasidle.json";
-const attackAnim1 = "animation/tejasattack.json";
-const runAnim1 = "animation/tejasrun.json";
-const jumpAnim1 = "animation/tejsjump.json";
-const deadAnim1 = "animation/tejasdead.json";
+const idleAnim1 = "assets/tejasidle.json";
+const attackAnim1 = "assets/tejasattack.json";
+const runAnim1 = "assets/tejasrun.json";
+const jumpAnim1 = "assets/tejsjump.json";
+const deadAnim1 = "assets/tejasdead.json";
 
-const idleAnim2 = "animation/alidle.json";
-const attackAnim2 = "animation/alattack.json";
-const runAnim2 = "animation/alrun.json";
-const jumpAnim2 = "animation/aljump.json";
-const deadAnim2 = "animation/aldead.json";
+const idleAnim2 = "assets/alidle.json";
+const attackAnim2 = "assets/alattack.json";
+const runAnim2 = "assets/alrun.json";
+const jumpAnim2 = "assets/aljump.json";
+const deadAnim2 = "assets/aldead.json";
 
 
 const allAnimations = [idleAnim1, attackAnim1, runAnim1, deadAnim1, jumpAnim1,
@@ -64,7 +64,7 @@ function addHandlers(controller, thisPlayer) {
 
 function appStart() {
   // Set background
-  const background = PIXI.Texture.fromImage("animation/background.webp");
+  const background = PIXI.Texture.fromImage("assets/background.webp");
   app.stage.addChild(new PIXI.Sprite(background));
 
   if (debug) {
