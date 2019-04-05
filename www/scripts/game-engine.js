@@ -233,7 +233,6 @@ export class Player extends GameObject {
   }
 
   die() {
-    console.log("DIE");
     const instance = this;
     this.playAnimation(this.deadAnim, false, function() {
       instance.animations[instance.idleAnim].destroy();
@@ -245,7 +244,6 @@ export class Player extends GameObject {
 
   attackHandler() {
     if (this._blockAttack) return;
-    console.log("Attack");
 
     this._blockAttack = true;
 
@@ -286,7 +284,6 @@ export class Player extends GameObject {
 
   defendHandler() {
     return;
-    console.log("Defend");
 
     // Play the animation
     const instance = this;
