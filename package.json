@@ -2,7 +2,7 @@
   "name": "microsmash",
   "version": "0.1.0",
   "scripts": {
-    "start": "./node_modules/.bin/live-server --mount=/:src --mount=animation:animation",
+    "start": "./node_modules/.bin/http-server --mount=/:src --mount=animation:animation",
     "lint": "./node_modules/.bin/eslint ."
   },
   "repository": "https://github.com/Hungary4Success/microsmash.git",
